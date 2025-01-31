@@ -15,23 +15,34 @@
       #footer a:link { text-align:left }
       #item6 a:link { text-align:right }
       .style1 { margin-top:0.3em; margin-bottom:0; font-size:2.4em; text-align:center }
-      .style2 { margin-top:0; margin-bottom:0.3em; text-align:center }
-      .style3 { font-weight:bolder }
-      .style4 { text-align:left }
-      .style5 { text-align:right }
-      .style6 { margin-top:1em; margin-bottom:0; text-align:left }
+      .style2 { color:black }
+      .style3 { margin-top:0; margin-bottom:0.3em; text-align:center }
+      .style4 { font-weight:bolder }
+      .style5 { text-align:left }
+      .style6 { font-style:italic }
+      .style7 { text-align:right }
+      .style8 { margin-top:1em; margin-bottom:0; text-align:left }
       #brand { position:relative; min-width:100px; padding-top:1px; padding-bottom:1px }
       #facebook { width:36px; height:36px; max-width:33%; vertical-align:middle }
       #footer { display:flex; position:relative; min-width:100px; justify-content:center; flex-direction:row }
       #header { position:relative; min-width:100px; min-height:100px; padding-left:2%; padding-right:2% }
       #image1 { max-width:99% }
       #image2 { max-width:99% }
-      #item1 { display:flex; position:relative; min-width:48% }
-      #item2 { display:flex; position:relative; min-width:48%; margin-right:auto }
+      #image3 { max-width:99% }
+      #image4 { max-width:92% }
+      #image5 { max-width:99% }
+      #image6 { max-width:99% }
+      #item { display:flex; position:relative; min-width:48%; margin-right:auto }
+      #item10 { position:relative; min-width:48% }
+      #item11 { position:relative; min-width:48%; align-self:flex-end }
+      #item2 { position:relative; min-width:48% }
       #item3 { position:relative; min-width:48%; align-self:flex-end }
-      #item4 { position:relative; min-width:48% }
+      #item4 { display:flex; position:relative; min-width:48%; margin-right:auto }
       #item5 { position:relative; min-width:49% }
       #item6 { position:relative; min-width:49%; align-self:auto }
+      #item7 { position:relative; min-width:72% }
+      #item8 { position:relative; min-width:26%; align-self:flex-end }
+      #item9 { display:flex; position:relative; margin-right:auto }
       #linkedin { width:36px; height:36px; max-width:33%; vertical-align:middle }
       #mail { width:36px; height:36px; max-width:33%; vertical-align:middle }
       #main { position:relative; min-width:100px; min-height:100px; padding-left:2%; padding-right:2% }
@@ -44,37 +55,64 @@
    <div id="page-wrapper">
       <header id="header">
          <div id="brand">
-            <h1 class="style1">Douglas Gauck</h1>
-            <h2 class="style2"><span class="style3">select</span>ed works</h2>
+            <h1 class="style1"><a class="style2" href="index.html">Douglas Gauck</a></h1>
+            <h2 class="style3"><span class="style4">select</span>ed works</h2>
          </div>
          <nav id="navigation">
-            <p><a href="robotics.html">Robotics</a> | <a href="renovation.html">Renovation</a> | <a href="restoration.html">Restoration</a> | <a href="recreation.html">Recreation</a></p>
+            <p><a href="writing.html">Writing</a> | <a href="diagrams.html">Diagrams</a> | <a href="robotics.html">Robotics</a> | <a href="renovation.html">Renovation</a> | <a href="convertibles.html">Convertibles</a> | <a href="recreation.html">Recreation</a></p>
          </nav>
       </header>
       <main id="main">
-         <p>The final season. Details forthcoming.</p>
-         <div id="item2">
-            <div id="item4">
-               <p class="style4"><img id="image1" src="resources/2022-23.png" alt=""></p>
-               <p class="style4">The 2022-23 AFS Robotics <a href="https://cad.onshape.com/documents/1353d858af1996690bd25c55/w/a671656b370450f4f2d6006b/e/daa876d2540f97a2e24ecf31?renderMode=0&uiState=652610f27fb0835ee9f85310" target="_blank">CAD model</a>, done in Onshape. </p>
+         <p>This year the game involved picking up traffic cones and inflated cubes... two very different objects. The team spent a lot of time discussing how this could be done: a different intake dedicated to each type of object? Should we be able to pick up a cone from any orientation or only upright cones? Should be count on getting them only from the loading station or should we be able to pick them up off the floor? All of the game requirements can be seen here: <a href="https://www.youtube.com/watch?v=0zpflsYc4PA" target="_blank">https://www.youtube.com/watch?v=0zpflsYc4PA</a></p>
+         <div id="item">
+            <div id="item2">
+               <p class="style5"><img id="image1" src="resources/2022-23.png" alt=""></p>
+               <p class="style5"><span class="style6">The 2022-23 AFS Robotics <a href="https://cad.onshape.com/documents/1353d858af1996690bd25c55/w/a671656b370450f4f2d6006b/e/daa876d2540f97a2e24ecf31?renderMode=0&uiState=652610f27fb0835ee9f85310" target="_blank">CAD model</a>, done in Onshape.</span> </p>
                <p></p>
             </div>
             <div id="item3">
-               <p class="style5"><img id="image2" src="resources/2022-23.jpg" alt=""></p>
-               <p class="style5">The robot as built matches the CAD 100%.</p>
+               <p class="style7"><img id="image2" src="resources/2022-23.jpg" alt=""></p>
+               <p class="style7"><span class="style6">The robot as built matches the CAD 100%.</span></p>
             </div>
          </div>
-         <div id="item1"></div>
-         <p class="style4"></p>
-         <p class="style4"></p>
-         <p class="style4"></p>
+         <p class="style5">The design was led by a student who had taken great initiative over the summer to learn CAD. He figured out the geometry needed for the fully retracted arms to be at floor level while also able to reach the highest objective when extended, and to be able to rest at the correct height for the loading station. It was wonderful work to do all that and also fit it within the robot's perimeter. I had some concerns about the amount of force it would take to rotate and control the upper segment of the arm, and the large moment caused by the accelerating arm did turn out to be a challenge.</p>
+         <div id="item4">
+            <div id="item7">
+               <p class="style5"><a href="resources/pincher.png" target="_blank"><img id="image3" src="resources/pincher.png" alt=""></a></p>
+               <p class="style5"><span class="style6">The pincer used only a single pneumatic piston to keep the mechanism as simple and light as possible. The belts act as a parallel link to keep the pincer horizontal as the arm rotates.</span></p>
+               <p></p>
+            </div>
+            <div id="item8">
+               <p class="style7"><a href="resources/pistonpivot.jpg" target="_blank"><img id="image4" src="resources/pistonpivot.jpg" alt=""></a></p>
+               <p class="style7"><span class="style6">A custom pivot piece made to properly orient the air hoses in the tight space.</span></p>
+            </div>
+         </div>
+         <p class="style5">The first way to address it was the design goal of minimizing the weight at the end of the arm. The pincer was as slight as we could make it, with one piston to open and close the jaws and plastic gears to do so symmetrically. The upper arms were made of thin-walled aluminum extrusion, and belts instead of chain were used to keep the pincer horizontal. The one extravance in the weight budget was to make the 'fingers' of the pincer easily replaceable in case they were damaged (although the entire assembly could be replaced by removing two bolts and two air hoses).</p>
+         <p class="style5">Another strategy used to deal with the stress on the upper arm pivot was to drive it with a long belt and mount the motor with a means to easily adjust the belt tension. This choice meant we could strike the balance between driving the arm effectively versus destructively. If ever the load of the arm exceeded the limits of the mechanism, the belt would skip before anything broke. This did end up happening in the mêlée of competition (impacts with other robots or playing field objects) and even during exuberant driving practice (the wrong combination of laden arm movement and robot acceleration).</p>
+         <p class="style5">Accepting that the belt would skip meant the upper arm position could no longer be sensed based on the motor rotation, so we mounted an absolute encoder at the point of rotation to capture a direct reading.</p>
+         <p class="style5">A low center of gravity is always good, so once again as much as possible of the heavy equipment was mounted low to the ground. In fact, the only somewhat heavy part not mounted within 8" of the ground is the upper arm rotator motor, because it had to travel with the middle arm as it extended. Even that was mounted as low as possible on the middle arm.</p>
+         <div id="item9">
+            <div id="item10">
+               <p class="style5"><a href="resources/balance.mp4" target="_blank"><video id="image5" src="resources/balance.mp4" controls></video></a></p>
+               <p class="style5"><span class="style6">Early balance subroutine testing.</span></p>
+            </div>
+            <div id="item11">
+               <p class="style7"><a href="resources/test2023.mp4" target="_blank"><video id="image6" src="resources/test2023.mp4" controls></video></a></p>
+               <p class="style7"><span class="style6">Autonomous routine testing.</span></p>
+            </div>
+         </div>
+         <p class="style5">Best practices we'd been developing over the past couple of years were followed. Thorough planning, prototyping, a complete CAD model, and a second chassis test bed allowed for concurrent work, and dramatically reduced stress levels. There was time for the software team to do their work properly, testing and tuning arm position presets, an automatic balance routine, and an excellent autonomous routine. There was time for the drive team to practice.</p>
+         <p class="style5">The team's efforts resulted in even greater success, as they were again alliance captains at both regional events and advanced to compete at the district level. And this year, they did well enough there to advance to the world championship competition in Houston. See matches at <a href="https://www.thebluealliance.com/team/4373/2023" target="_blank">https://www.thebluealliance.com/team/4373/2023</a></p>
+         <p class="style5">Design features:<br>• Three segment arm retracts and rotates to fit within robot perimeter, but can also extend and rotate to reach all desired positions<br>• Middle arm is extended by a low slung motor and chain that rides inside of one of the stationary lower arms for safety and protection<br>• In addition to reaching all desired targets, pincher can be retracted into robot to protect game piece during transit<br>• Battery, compressor, extender motor and drive motors located as low as possible to offset the mass of the arm assembly<br>• Drive chassis powered by six high performance motors and high ratio gearbox for best balance of torque and speed<br>• All electronics, pneumatic valves, and non-integrated motor controlers installed in two central areas for easy access and troubleshooting<br>• Dead simple mechanism for righting a prone cone: 12" PVC pipe deployable at the exact height to catch the rim of the cone as the robot turned </p>
+         <p class="style5"></p>
+         <p class="style5"></p>
       </main>
       <footer id="footer">
          <div id="item5">
-            <p class="style6">Copyright © 2024 All rights reserved.   </p>
+            <p class="style8">Copyright © 2024 All rights reserved.   </p>
          </div>
          <div id="item6">
-            <p class="style5"><a href="mailto:douglas@gauck.com"><img id="mail" src="resources/mail.png" alt=""></a> <a href="https://www.linkedin.com/in/douglas-gauck/" target="_blank"><img id="linkedin" src="resources/linkedin.png" alt=""></a> <a href="https://www.youtube.com/channel/UCURQBup4ncmhhlH-Ak-DuKg" target="_blank"><img id="youtube" src="resources/youtube.png" alt=""></a> <a href="https://www.facebook.com/douglas.gauck" target="_blank"><img id="facebook" src="resources/fb.jpg" alt=""></a></p>
+            <p class="style7"><a href="mailto:douglas@gauck.com"><img id="mail" src="resources/mail.png" alt=""></a> <a href="https://www.linkedin.com/in/douglas-gauck/" target="_blank"><img id="linkedin" src="resources/linkedin.png" alt=""></a> <a href="https://www.youtube.com/channel/UCURQBup4ncmhhlH-Ak-DuKg" target="_blank"><img id="youtube" src="resources/youtube.png" alt=""></a> <a href="https://www.facebook.com/douglas.gauck" target="_blank"><img id="facebook" src="resources/fb.jpg" alt=""></a></p>
          </div>
       </footer>
    </div>

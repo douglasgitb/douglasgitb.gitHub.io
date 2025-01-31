@@ -15,12 +15,13 @@
       #footer a:link { text-align:left }
       #item6 a:link { text-align:right }
       .style1 { margin-top:0.3em; margin-bottom:0; font-size:2.4em; text-align:center }
-      .style2 { margin-top:0; margin-bottom:0.3em; text-align:center }
-      .style3 { font-weight:bolder }
-      .style4 { text-align:left }
-      .style5 { font-style:italic }
-      .style6 { text-align:right }
-      .style7 { margin-top:1em; margin-bottom:0; text-align:left }
+      .style2 { color:black }
+      .style3 { margin-top:0; margin-bottom:0.3em; text-align:center }
+      .style4 { font-weight:bolder }
+      .style5 { text-align:left }
+      .style6 { font-style:italic }
+      .style7 { text-align:right }
+      .style8 { margin-top:1em; margin-bottom:0; text-align:left }
       #brand { position:relative; min-width:100px; padding-top:1px; padding-bottom:1px }
       #facebook { width:36px; height:36px; max-width:33%; vertical-align:middle }
       #footer { display:flex; position:relative; min-width:100px; justify-content:center; flex-direction:row }
@@ -49,44 +50,44 @@
    <div id="page-wrapper">
       <header id="header">
          <div id="brand">
-            <h1 class="style1">Douglas Gauck</h1>
-            <h2 class="style2"><span class="style3">select</span>ed works</h2>
+            <h1 class="style1"><a class="style2" href="index.html">Douglas Gauck</a></h1>
+            <h2 class="style3"><span class="style4">select</span>ed works</h2>
          </div>
          <nav id="navigation">
-            <p><a href="robotics.html">Robotics</a> | <a href="renovation.html">Renovation</a> | <a href="restoration.html">Restoration</a> | <a href="recreation.html">Recreation</a></p>
+            <p><a href="writing.html">Writing</a> | <a href="diagrams.html">Diagrams</a> | <a href="robotics.html">Robotics</a> | <a href="renovation.html">Renovation</a> | <a href="convertibles.html">Convertibles</a> | <a href="recreation.html">Recreation</a></p>
          </nav>
       </header>
       <main id="main">
          <p>I was involved right from the beginning of the 2018-19 season, striking a balance between trying to implement needed improvements while respecting the fact that I was a new mentor joining an established program. My first efforts were to encourage a bit more planning and prototyping before acceding to students' eagerness to start building.</p>
          <div id="item2">
             <div id="item4">
-               <p class="style4"><img id="image1" src="resources/2018-19.png" alt=""></p>
-               <p><span class="style5">Parts of the CAD model are fully complete; others are not.</span></p>
+               <p class="style5"><img id="image1" src="resources/2018-19.png" alt=""></p>
+               <p><span class="style6">Parts of the CAD model are fully complete; others are not.</span></p>
             </div>
             <div id="item3">
-               <p class="style6"><img id="image2" src="resources/2018-19.jpg" alt=""> <span class="style5">The build was based on the CAD but "field adjustments" were needed.</span></p>
+               <p class="style7"><img id="image2" src="resources/2018-19.jpg" alt=""> <span class="style6">The build was based on the CAD but "field adjustments" were needed.</span></p>
             </div>
          </div>
-         <p class="style4">Increased planning and prototyping also allowed me to naturally advocate for a more modular design. This meant different subsytems could be built and tested separately, and allowed them to be put through iterative tweaking. The linear bottleneck from previous years was eased a little bit. Modularity would also allow us to design the robot to be more easily serviced, and to allow us to build and swap in backup assemblies if needed. I stressed that the many benefits of this approach came at the cost of increased effort in integrating the systems, but that we needed to be making that effort anyway. </p>
-         <p class="style4">The way to make sure all the subsystems would fit together was to embrace CAD, and one student in particular took the lead in learning Onshape and doing most of the CAD work. The team learned a painful lesson about single point of failure when the student miscalculated some of the geometry for the main arm, and only after it was built was it discovered to be too short. By this time it was too late to undertake the amount of redesign to truly fix it, and instead we wasted a lot of time and effort to implement a workaround that never did work (pneumatically extending the 'spine' was impossible due to lateral loading of the arm). The model was also done in the student's personal account, which is problematic.</p>
-         <p class="style4">Change is difficult, and while we were able to establish some good precedents for improved operations, the team also fell back on some bad habits. Using CAD allowed for unprecendented precision and sophistication that was heretofore out of reach. Making full use of this capability called for thinking and acting in new ways, and that was too much to change all at once. We once again ran out of time to complete the build and therefore relegated software development, testing, and training to an afterthought. This was evident in our so-so performance in <a href="https://www.thebluealliance.com/team/4373/2019" target="_blank">competition</a> (under .500).</p>
+         <p class="style5">Increased planning and prototyping also allowed me to naturally advocate for a more modular design. This meant different subsytems could be built and tested separately, and allowed them to be put through iterative tweaking. The linear bottleneck from previous years was eased a little bit. Modularity would also allow us to design the robot to be more easily serviced, and to allow us to build and swap in backup assemblies if needed. I stressed that the many benefits of this approach came at the cost of increased effort in integrating the systems, but that we needed to be making that effort anyway. </p>
+         <p class="style5">The way to make sure all the subsystems would fit together was to embrace CAD, and one student in particular took the lead in learning Onshape and doing most of the CAD work. The team learned a painful lesson about single point of failure when the student miscalculated some of the geometry for the main arm, and only after it was built was it discovered to be too short. By this time it was too late to undertake the amount of redesign to truly fix it, and instead we wasted a lot of time and effort to implement a workaround that never did work (pneumatically extending the 'spine' was impossible due to lateral loading of the arm). The model was also done in the student's personal account, which is problematic.</p>
+         <p class="style5">Change is difficult, and while we were able to establish some good precedents for improved operations, the team also fell back on some bad habits. Using CAD allowed for unprecendented precision and sophistication that was heretofore out of reach. Making full use of this capability called for thinking and acting in new ways, and that was too much to change all at once. We once again ran out of time to complete the build and therefore relegated software development, testing, and training to an afterthought. This was evident in our so-so performance in <a href="https://www.thebluealliance.com/team/4373/2019" target="_blank">competition</a> (under .500).</p>
          <div id="item1">
             <div id="item8">
-               <p><video id="rocketfuel" src="resources/rocketfuel.mp4" controls></video><span class="style5">With the ball &amp; disc manipulator, the team achieved a new level of fine manipulation and control. </span></p>
+               <p><video id="rocketfuel" src="resources/rocketfuel2.mp4" controls></video><span class="style6">With the ball &amp; disc manipulator, the team achieved a new level of fine manipulation and control. </span></p>
             </div>
             <div id="item9">
-               <p class="style6"><span class="style5"><video id="hatchcover2" src="resources/hatchcover.mp4" controls></video>Even if other parts of the robot were not at the same level.</span></p>
+               <p class="style7"><span class="style6"><video id="hatchcover2" src="resources/hatchcover.mp4" controls></video>Even if other parts of the robot were not at the same level.</span></p>
             </div>
          </div>
-         <p class="style4">Design features:<br>• Intake positively deployed from starting position to exact usage position by pneumatic pistons, which also acted as shock absorbers<br>• Single intake contained dual mechanisms to handle both balls and discs<br>• Four-bar linkage kept intake level at all times and was driven by chain/sprocket to measurable positions<br>• Most electronics consolidated, organized and labeled on a single panel for ease of troubleshooting and servicability<br>• "H wheel" mounted perpendicular to tank drive wheels, could be deployed for lateral movement then retracted for clearance<br>• Wheeled stilts to raise and move robot to endgame position were ultimately omitted due to lack of development time<br></p>
-         <p class="style4"></p>
+         <p class="style5">Design features:<br>• Intake positively deployed from starting position to exact usage position by pneumatic pistons, which also acted as shock absorbers<br>• Single intake contained dual mechanisms to handle both balls and discs<br>• Four-bar linkage kept intake level at all times and was driven by chain/sprocket to measurable positions<br>• Most electronics consolidated, organized and labeled on a single panel for ease of troubleshooting and servicability<br>• "H wheel" mounted perpendicular to tank drive wheels, could be deployed for lateral movement then retracted for clearance<br>• Wheeled stilts to raise and move robot to endgame position were ultimately omitted due to lack of development time<br></p>
+         <p class="style5"></p>
       </main>
       <footer id="footer">
          <div id="item5">
-            <p class="style7">Copyright © 2024 All rights reserved.   </p>
+            <p class="style8">Copyright © 2024 All rights reserved.   </p>
          </div>
          <div id="item6">
-            <p class="style6"><a href="mailto:douglas@gauck.com"><img id="mail" src="resources/mail.png" alt=""></a> <a href="https://www.linkedin.com/in/douglas-gauck/" target="_blank"><img id="linkedin" src="resources/linkedin.png" alt=""></a> <a href="https://www.youtube.com/channel/UCURQBup4ncmhhlH-Ak-DuKg" target="_blank"><img id="youtube" src="resources/youtube.png" alt=""></a> <a href="https://www.facebook.com/douglas.gauck" target="_blank"><img id="facebook" src="resources/fb.jpg" alt=""></a></p>
+            <p class="style7"><a href="mailto:douglas@gauck.com"><img id="mail" src="resources/mail.png" alt=""></a> <a href="https://www.linkedin.com/in/douglas-gauck/" target="_blank"><img id="linkedin" src="resources/linkedin.png" alt=""></a> <a href="https://www.youtube.com/channel/UCURQBup4ncmhhlH-Ak-DuKg" target="_blank"><img id="youtube" src="resources/youtube.png" alt=""></a> <a href="https://www.facebook.com/douglas.gauck" target="_blank"><img id="facebook" src="resources/fb.jpg" alt=""></a></p>
          </div>
       </footer>
    </div>

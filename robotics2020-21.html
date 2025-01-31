@@ -12,16 +12,20 @@
       body { height:100%; margin:0; background:transparent }
       html { height:100% }
       #navigation p { font-family:Helvetica,Arial,sans-serif; text-align:center }
+      #item7 p { text-align:left }
       #footer a:link { text-align:left }
       #item6 a:link { text-align:right }
       .style1 { margin-top:0.3em; margin-bottom:0; font-size:2.4em; text-align:center }
-      .style2 { margin-top:0; margin-bottom:0.3em; text-align:center }
-      .style3 { font-weight:bolder }
-      .style4 { text-align:left }
-      .style5 { font-style:italic; text-align:left }
-      .style6 { text-align:right }
-      .style7 { font-style:italic }
-      .style8 { margin-top:1em; margin-bottom:0; text-align:left }
+      .style2 { color:black }
+      .style3 { margin-top:0; margin-bottom:0.3em; text-align:center }
+      .style4 { font-weight:bolder }
+      .style5 { text-align:left }
+      .style6 { font-style:italic; text-align:left }
+      .style7 { text-align:right }
+      .style8 { font-style:italic }
+      #item7 .style9 { text-align:left }
+      #item7 .style10 { text-align:left }
+      .style11 { margin-top:1em; margin-bottom:0; text-align:left }
       #brand { position:relative; min-width:100px; padding-top:1px; padding-bottom:1px }
       #facebook { width:36px; height:36px; max-width:33%; vertical-align:middle }
       #footer { display:flex; position:relative; min-width:100px; justify-content:center; flex-direction:row }
@@ -31,6 +35,9 @@
       #image2 { max-width:99% }
       #item1 { display:flex; position:relative; min-width:48% }
       #item10 { position:relative; min-width:49%; max-width:49%; margin-left:auto }
+      #item11 { display:flex; position:relative; min-width:100px; min-height:100px }
+      #item12 { position:relative; min-width:49%; max-width:49% }
+      #item13 { position:relative; min-width:49%; max-width:49%; margin-left:auto }
       #item2 { display:flex; position:relative; min-width:48%; margin-right:auto }
       #item3 { position:relative; min-width:48%; align-self:flex-end }
       #item4 { position:relative; min-width:48% }
@@ -44,7 +51,9 @@
       #main { position:relative; min-width:100px; min-height:100px; padding-left:2%; padding-right:2% }
       #navigation { position:relative }
       #page-wrapper { position:relative; max-width:1024px; min-height:96vh; margin-left:auto; margin-top:2vh; margin-right:auto; z-index:0; background:transparent }
-      #swerve { max-width:99% }
+      #protohopper { max-width:99% }
+      #protolauncherparts { max-width:99% }
+      #swervebase { max-width:99% }
       #youtube { width:36px; height:36px; max-width:33%; vertical-align:middle }
    </style>
 </head>
@@ -52,52 +61,62 @@
    <div id="page-wrapper">
       <header id="header">
          <div id="brand">
-            <h1 class="style1">Douglas Gauck</h1>
-            <h2 class="style2"><span class="style3">select</span>ed works</h2>
+            <h1 class="style1"><a class="style2" href="index.html">Douglas Gauck</a></h1>
+            <h2 class="style3"><span class="style4">select</span>ed works</h2>
          </div>
          <nav id="navigation">
-            <p><a href="robotics.html">Robotics</a> | <a href="renovation.html">Renovation</a> | <a href="restoration.html">Restoration</a> | <a href="recreation.html">Recreation</a></p>
+            <p><a href="writing.html">Writing</a> | <a href="diagrams.html">Diagrams</a> | <a href="robotics.html">Robotics</a> | <a href="renovation.html">Renovation</a> | <a href="convertibles.html">Convertibles</a> | <a href="recreation.html">Recreation</a></p>
          </nav>
       </header>
       <main id="main">
-         <p>In many ways the 2020-21 season was a repeat of last year, as FIRST mostly recycled the unplayed game rules and we institutionalized as many of the best practices as we could from the prior year (along with some of the design goals).</p>
+         <p>In many ways the 2020-21 season was an iteration of the previous year, as FIRST mostly recycled the unplayed game rules and we institutionalized as many of the best practices as we could from the prior year (along with some of the design goals).</p>
          <div id="item2">
             <div id="item4">
-               <p class="style4"><img id="image1" src="resources/2020-21.png" alt=""></p>
-               <p class="style5">The 2020-21 AFS Robotics <a href="https://cad.onshape.com/documents/8dd3a623720acd4f0d389ab9/w/afc16997a6b482ddc30b89ee/e/f0bd670b270f36e039c03308" target="_blank">CAD model</a>, done in Onshape. </p>
+               <p class="style5"><img id="image1" src="resources/2020-21.png" alt=""></p>
+               <p class="style6">The 2020-21 AFS Robotics <a href="https://cad.onshape.com/documents/8dd3a623720acd4f0d389ab9/w/afc16997a6b482ddc30b89ee/e/f0bd670b270f36e039c03308" target="_blank">CAD model</a>, done in Onshape. </p>
                <p></p>
             </div>
             <div id="item3">
-               <p class="style6"><img id="image2" src="resources/2020-21.jpg" alt=""></p>
-               <p class="style6"><span class="style7">The final robot as built matches the CAD model exactly.</span></p>
+               <p class="style7"><img id="image2" src="resources/2020-21.jpg" alt=""></p>
+               <p class="style7"><span class="style8">The final robot as built matches the CAD model exactly.</span></p>
             </div>
          </div>
          <div id="item1"></div>
-         <p class="style4">We continued to invest in learning and using CAD, and in honing our CNC fabrication skills. We again dedicated and even increased the time spent in the prototyping phase.</p>
+         <p class="style5">We continued to invest in learning and using CAD, and in honing our CNC fabrication skills. We again dedicated and even increased the time spent in the prototyping phase.</p>
          <div id="item8">
             <div id="item9">
-               <p class="style4">We created a much better (wider and more reliable) ball intake and outstanding ball storage and feeder system.</p>
-               <p>The launcher remained largely unchanged, although the motor assembly moved to the bottom so as to further lower the center of gravity.</p>
-               <p class="style4">Again optimizing for a compact, low slung robot, we had to practice continual integration as we developed each subsystem, so that they would all fit inside the bounds of the robot and work together. One small illustration of this philosophy is the mounting of the launcher shown in the photo to the right. Two of the blue rods that define the distance between the sides of the launcher are also bolted to silver extensions that secure the launcher between the inner beams of the robot. Those inner beams also support the inboard edges of the four swerve units. A bit of shock absorption and dampening are a bonus characteristic of this arrangement. </p>
-               <p class="style4">The result of following this philosophy throughout the project is a simpler, more elegant design with fewer parts to fabricate, fewer points of failure, and easier servicing.</p>
+               <p class="style5">We created a much better (wider and more reliable) ball intake and outstanding ball storage and feeder system.</p>
+               <p>The launcher remained largely unchanged, although the motor assembly was better integrated and moved to the bottom so as to further lower the center of gravity.</p>
+               <p class="style5">Again optimizing for a compact, low slung robot, we had to practice continual integration as we developed each subsystem, so that they would all fit inside the bounds of the robot and work together. One small illustration of this philosophy is the mounting of the launcher shown in the photo to the right. Two of the blue rods that define the distance between the sides of the launcher are also through-bolted to silver extensions that secure the launcher between the inner beams of the robot. Those inner beams also support the inboard edges of the four swerve units. A bit of shock absorption and dampening are a bonus characteristic of this arrangement. </p>
+               <p class="style5">The result of following this philosophy throughout the project is a simpler, more elegant design with fewer parts to fabricate, fewer points of failure, and easier servicing.</p>
             </div>
             <div id="item10">
-               <p><span class="style7"><img id="swerve" src="resources/swervebase.jpg" alt="">One of the two drive bases with launcher attached for testing . </span></p>
+               <p><span class="style8"><img id="swervebase" src="resources/swervebase.jpg" alt="">One of the two drive bases with launcher attached for testing . </span></p>
+            </div>
+         </div>
+         <div id="item11">
+            <div id="item12">
+               <p class="style5"><img id="protohopper" src="resources/protohopper.jpg" alt=""></p>
+               <p><span class="style8">After a successful proof of concept, a middle stage prototype of the ball hopper was made from plywood because it is quick and easy to work and adjust. Angles and spacing were tweaked and tested to find the speediest and most reliable storage/feed geometry. </span></p>
+            </div>
+            <div id="item13">
+               <p><img id="protolauncherparts" src="resources/protolauncherparts.jpg" alt=""></p>
+               <p><span class="style8">Quarter inch plywood was an inexpensive and susatinable material for making these prototype intake and launcher parts. Exported from CAD and cut on the CNC machine, they would never survive competition but suited iterative testing just fine.</span></p>
             </div>
          </div>
          <div id="item7">
-            <p><video id="gettothehoppa" src="resources/gettothehoppa.mp4" controls></video></p>
-            <p><span class="style7">Angled belts run at different speeds to prevent jams, and also serve as the gate to keep balls for the launcher.</span></p>
+            <p class="style9"><video id="gettothehoppa" src="resources/gettothehoppa.mp4" controls></video></p>
+            <p class="style10"><span class="style8">Angled belts run at different speeds to prevent jams, and also serve as the gate to hold then feed balls to the launcher.</span></p>
          </div>
-         <p class="style4">Sadly this year also saw the cancellation of all events, so once again the team never got to compete with this robot.</p>
-         <p class="style4">Design features:<br>• Ultra compact design for low center of gravity and clearance through playfield tunnel (again)<br>• Battery and winch motors located in undercarriage of robot for stability (again)<br>• All four swerve drive units were identical, with locally-mounted motor controllers, to enable totally modular service / replacement (again)<br>• All electronics installed on a single panel for easy access and troubleshooting<br>• New ball intake used one motor to drive three rollers to gather balls along the entire 30" front length of the robot<br>• V-shaped, inclined hopper stored up to the game limit of five balls, and funneled them towards the center launcher inlet<br>• Single motor and custom gearbox drove both hopper belts in different directions and at slightly different speeds to unjam ball feed<br>• Belt spacing at narrow end of hopper stops balls just before launcher, then actively delivers them on demand at a consistent velocity<br>• A single motor operated the hook delivery arms, which used #25 chain to automatically open the 'elbow' as the 'shoulder' was rotated<br>  </p>
+         <p class="style5">Sadly this year also saw the cancellation of all events, so once again the team never got to compete with this robot.</p>
+         <p class="style5">Design features:<br>• Ultra compact design for low center of gravity and clearance through playfield tunnel (again)<br>• Battery and winch motors located in undercarriage of robot for stability (again)<br>• All four swerve drive units were identical, with locally-mounted motor controllers, to enable totally modular service / replacement (again)<br>• All electronics installed on a single panel for easy access and troubleshooting<br>• New ball intake used one motor to drive three rollers to gather balls along the entire 30" front length of the robot<br>• V-shaped, inclined hopper stored up to the game limit of five balls, and funneled them towards the center launcher inlet<br>• Single motor and custom gearbox drove both hopper belts in different directions and at slightly different speeds to unjam ball feed<br>• Belt spacing at narrow end of hopper stops balls just before launcher, then actively delivers them on demand at a consistent velocity<br>• A single motor operated the hook delivery arms, which used #25 chain to automatically open the 'elbow' as the 'shoulder' was rotated<br>  </p>
       </main>
       <footer id="footer">
          <div id="item5">
-            <p class="style8">Copyright © 2024 All rights reserved.   </p>
+            <p class="style11">Copyright © 2024 All rights reserved.   </p>
          </div>
          <div id="item6">
-            <p class="style6"><a href="mailto:douglas@gauck.com"><img id="mail" src="resources/mail.png" alt=""></a> <a href="https://www.linkedin.com/in/douglas-gauck/" target="_blank"><img id="linkedin" src="resources/linkedin.png" alt=""></a> <a href="https://www.youtube.com/channel/UCURQBup4ncmhhlH-Ak-DuKg" target="_blank"><img id="youtube" src="resources/youtube.png" alt=""></a> <a href="https://www.facebook.com/douglas.gauck" target="_blank"><img id="facebook" src="resources/fb.jpg" alt=""></a></p>
+            <p class="style7"><a href="mailto:douglas@gauck.com"><img id="mail" src="resources/mail.png" alt=""></a> <a href="https://www.linkedin.com/in/douglas-gauck/" target="_blank"><img id="linkedin" src="resources/linkedin.png" alt=""></a> <a href="https://www.youtube.com/channel/UCURQBup4ncmhhlH-Ak-DuKg" target="_blank"><img id="youtube" src="resources/youtube.png" alt=""></a> <a href="https://www.facebook.com/douglas.gauck" target="_blank"><img id="facebook" src="resources/fb.jpg" alt=""></a></p>
          </div>
       </footer>
    </div>
