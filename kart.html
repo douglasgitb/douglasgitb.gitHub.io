@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Kart</title>
+   <meta name="generator" content="Xway">
+   <style>
+      * { box-sizing:border-box }
+      a:link { text-decoration:none }
+      a:hover { text-decoration:underline }
+      body { height:100%; margin:0; background:transparent }
+      html { height:100% }
+      #navigation p { font-family:Helvetica,Arial,sans-serif; text-align:center }
+      #footer a:link { text-align:left }
+      #item2 a:link { text-align:right }
+      .style1 { margin-top:0.3em; margin-bottom:0; font-size:2.4em; text-align:center }
+      .style2 { color:black }
+      .style3 { margin-top:0; margin-bottom:0.3em; text-align:center }
+      .style4 { font-weight:bolder }
+      .style5 { font-style:italic }
+      .style6 { text-align:right }
+      .style7 { margin-top:1em; margin-bottom:0; text-align:left }
+      #alpha { max-width:99% }
+      #brand { position:relative; min-width:100px; padding-top:1px; padding-bottom:1px }
+      #facebook { width:36px; height:36px; max-width:33%; vertical-align:middle }
+      #footer { display:flex; position:relative; min-width:100px; justify-content:center; flex-direction:row }
+      #frame { max-width:61% }
+      #grinding { max-width:34.3% }
+      #header { position:relative; min-width:100px; min-height:100px; padding-left:2%; padding-right:2% }
+      #item1 { position:relative; min-width:49% }
+      #item2 { position:relative; min-width:49%; align-self:auto }
+      #item3 { display:flex; position:relative; min-width:100px; min-height:100px; align-items:baseline }
+      #item4 { position:relative; min-width:100px; min-height:100px }
+      #item5 { display:flex; position:relative; min-width:45%; max-width:49%; align-self:baseline }
+      #item6 { position:relative; width:100px; min-width:49%; max-width:49%; min-height:10px; margin-left:auto; align-self:baseline }
+      #linkedin { width:36px; height:36px; max-width:33%; vertical-align:middle }
+      #maiden { max-width:48% }
+      #mail { width:36px; height:36px; max-width:33%; vertical-align:middle }
+      #main { position:relative; padding-left:2%; padding-right:2% }
+      #navigation { position:relative }
+      #page-wrapper { position:relative; max-width:1024px; min-height:96vh; margin-left:auto; margin-top:2vh; margin-right:auto; z-index:0; background:transparent }
+      #rear { max-width:48% }
+      #render { max-width:99% }
+      #rolling-chassis { max-width:50% }
+      #seat { max-width:48% }
+      #steering { max-width:80% }
+      #test { max-width:80% }
+      #wheels { max-width:48% }
+      #youtube { width:36px; height:36px; max-width:33%; vertical-align:middle }
+   </style>
+</head>
+<body>
+   <div id="page-wrapper">
+      <header id="header">
+         <div id="brand">
+            <h1 class="style1"><a class="style2" href="index.html">Douglas Gauck</a></h1>
+            <h2 class="style3"><span class="style4">select</span>ed works</h2>
+         </div>
+         <nav id="navigation">
+            <p><a href="writing.html">Writing</a> | <a href="diagrams.html">Diagrams</a> | <a href="robotics.html">Robotics</a> | <a href="renovation.html">Renovation</a> | <a href="convertibles.html">Convertibles</a> | <a href="recreation.html">Recreation</a></p>
+         </nav>
+      </header>
+      <main id="main">
+         <p>Electric Go-Kart (2020)</p>
+         <p>My son wanted to build a go-kart. I suggested we buy a kit since that would give us the pleasure of building it and would have all the integration and testing already done. He wanted to design the whole thing… so we did.</p>
+         <div id="item3">
+            <div id="item5">
+               <div id="item4">
+                  <p><span class="style5"><img id="alpha" src="resources/alpha2.jpg" alt="">Early prototype (age 9).</span></p>
+               </div>
+            </div>
+            <div id="item6">
+               <p class="style6"><span class="style5"><img id="render" src="resources/gokart.png" alt="">Six years later, with his OnShape CAD experience from robotics, he developed a more detailed design.</span></p>
+            </div>
+         </div>
+         <p> then got to work fabricating the frame, seat, and assembling the wheels:</p>
+         <p><video id="grinding" src="resources/grinding.m4v" controls></video> <img id="frame" src="resources/frame.jpg" alt=""></p>
+         <p><img id="seat" src="resources/seat.jpg" alt="">  <img id="wheels" src="resources/wheels.jpg" alt=""></p>
+         <p>The seat is even adjustable. The steering column is a steel pipe terminated with a pipe flange, and the tie rods connect to one of its bolt holes.</p>
+         <p><img id="steering" src="resources/steering.jpg" alt=""></p>
+         <p>Along with a steering wheel from an old video game and a surplus pedal from BMW, we got a rolling chassis:</p>
+         <p><img id="rolling-chassis" src="resources/rolling-chassis.jpg" alt=""></p>
+         <p>We chose a 48v DC motor and used four 12v UPS-style batteries for power. The most challenging part was finding sprockets of the same pitch that matched the metric motor output shaft and the 1" rear axle. The motor mount allows for adjustment of the drive chain tension.</p>
+         <p><img id="rear" src="resources/rear.jpg" alt="">. <video id="maiden" src="resources/maiden.m4v" controls></video></p>
+         <p><video id="test" src="resources/test.m4v" controls></video></p>
+         <p>The motor controller includes regenerative braking but we also added a disc brake. Other finishing touches include an on/off key, voltage meter, and forward/reverse toggle. We did not try to calculate it ahead of time, but this combination of motor RPM, sprocket ratio, and tire size gives the go-kart a maximum speed of about 35mph!  When you are inches from the ground, that feels plenty fast!</p>
+         <p></p>
+         <p></p>
+      </main>
+      <footer id="footer">
+         <div id="item1">
+            <p class="style7">Copyright © 2025 All rights reserved.   </p>
+         </div>
+         <div id="item2">
+            <p class="style6"><a href="mailto:douglas@gauck.com"><img id="mail" src="resources/mail.png" alt=""></a> <a href="https://www.linkedin.com/in/douglas-gauck/" target="_blank"><img id="linkedin" src="resources/linkedin.png" alt=""></a> <a href="https://www.youtube.com/channel/UCURQBup4ncmhhlH-Ak-DuKg" target="_blank"><img id="youtube" src="resources/youtube.png" alt=""></a> <a href="https://www.facebook.com/douglas.gauck" target="_blank"><img id="facebook" src="resources/fb.jpg" alt=""></a></p>
+         </div>
+      </footer>
+   </div>
+</body>
+</html>
