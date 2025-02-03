@@ -1,0 +1,180 @@
+
++---------------------------------------------------------------------------.
+Title            : Using a 27512 on your Sega 2716 eprom card               :
+Date             : 02-July-1997                                             :
+Author           : Paul Tonizzo                                             :
++---------------------------------------------------------------------------.
+
++----------.
+ Background \ 
++------------`--------------------------------------------------------------.
+                                                                            :
+Sega's G-80 system employs the use of a card cage that has game roms stored :
+on a 2716 eprom card. The card is capable of addressing 46K of memory. The  :
+downside is that 23(!) eproms are required to fill the entire card.         :
+Although each Sega game uses less than the maximum number of eproms, on     :
+average about 18 eproms are required for any one game.  Multiply that by    :
+all the games available on this platform and you've got a lot of eproms.    :
+This article will outline the procedure to use one 27512 eprom for the      :
+whole board.  This means that if you only own one eprom card and want to    :
+play a number of the games, you can get away with only having to swap one   :
+chip on the board instead of possible 23. This is also a good solution if   :
+you'd like to save those harder-to-find 2716s.                              :
+                                                                            :
++---------------------------------------------------------------------------.
+
++----------.
+ Disclaimer \ 
++------------`--------------------------------------------------------------.
+                                                                            :
+Read these instructions fully before starting!!! Do not attempt this        :
+procedure unless you are comfortable with using a soldering iron and this   :
+type of work.  You should also be taking anti-static precautions when       :
+handling any of the components including the board. Lastly, I cannot be     :
+held responsible if your board blows up so proceed at your own risk!        :
+                                                                            :
++---------------------------------------------------------------------------.
+
++---------.
+ Materials \ 
++-----------`---------------------------------------------------------------.
+                                                                            :
+	Qty	Description                                                 :
+	---	-----------                                                 :
+	 1 	27512 eprom                                                 :
+	 1 	28 pin socket                                               :
+	 1 	74LS00 chip (TTL NAND)                                      :
+	 1	14 pin socket                                               :
+	 1	small piece of breadboard (with traces on one side only)    :
+	 -	speedwire or other small gauge wire for jumpering           :
+                                                                            :
+	You will also need access to an eprom burner to burn the 27512      :
+	with the new image.                                                 :
+                                                                            :
++---------------------------------------------------------------------------.
+
++---------.
+ Procedure \ 
++-----------`---------------------------------------------------------------.
+                                                                            :
+Looking at the schematic for the 2716 eprom card, you will see that address :
+lines A11 to A15 are already available. The current circuit uses inverting  :
+decoder/demultiplexers with the extra address lines to determine which chip : 
+to select of the 23 on the board. This makes things real easy as we can     :
+just pull those lines to the appropriate pins on our 27512. All that is     :
+left is to make sure the chip is enabled at the right time. This can be     :
+done by NANDing the /Y0 output of chip U24 with the inverted /MEMR signal   :
+at chip U29.                                                                :
+                                                                            :
+Firstly, examining the pinouts for the 27512 and 2716, you'll note that     :
+they are very similar:                                                      :
+                                                                            :
+                 2716                                                       :
+         +--------\/--------+                                               :
+      1 -|A7             vcc|- 24                                           :
+      2 -|A6              A8|- 23                                           :
+      3 -|A5              A9|- 22                                           :
+      4 -|A4             vpp|- 21                                           :
+      5 -|A3             /oe|- 20                                           :
+      6 -|A2     2716    A10|- 19                                           :
+      7 -|A1             /ce|- 18                                           :
+      8 -|A0              D7|- 17                                           :
+      9 -|D0              D6|- 16                                           :
+     10 -|D1              D5|- 15                                           :
+     11 -|D2              D4|- 14                                           :
+     12 -|gnd             D3|- 13                                           :
+         +------------------+                                               :
+                 27512                                                      :
+         +--------\/--------+                                               :
+      1 -|A15            Vcc|- 28                                           :
+      2 -|A12            A14|- 27                                           :
+      3 -|A7             A13|- 26                                           :
+      4 -|A6              A8|- 25                                           :
+      5 -|A5              A9|- 24                                           :
+      6 -|A4             A11|- 23                                           :
+      7 -|A3         /OE-Vpp|- 22                                           :
+      8 -|A2             A10|- 21                                           :
+      9 -|A1        /CE-/PGM|- 20                                           :
+     10 -|A0              D7|- 19                                           :
+     11 -|D0              D6|- 18                                           :
+     12 -|D1              D5|- 17                                           :
+     13 -|D2              D4|- 16                                           :
+     14 -|gnd             D3|- 15                                           :
+         +------------------+                                               :
+                                                                            :
+In fact, you can almost plug the 27512 into the 2716 socket. Take the       :
+28-pin socket and bend up pins 1, 2, 28, 27, 26, 23, and 22. Then plug the  :
+socket into one of the empty 2716 sockets on the board (lining up the       :
+bottoms of each socket). I used chip socket U20 as it keeps everything      :
+close together. You should be using a regular height chip socket. There     :
+are some space restrictions when the card is in the cage.                   :
+                                                                            :
+Take some speedwire and make the following jumpers from the pins we bent    :
+out on our 28-pin socket:                                                   :
+                                                                            :
+- pin 1 of socket to U30 pin 6                                              :
+- pin 2 of socket to U30 pin 2                                              :
+- pin 28 of socket to +5v                                                   :
+- pin 27 of socket to U30 pin 4                                             :
+- pin 26 of socket to U30 pin 3                                             :
+- pin 23 of socket to U30 pin 1                                             :
+                                                                            :
+Now all that's left is to make sure the eprom gets enabled properly. We     :
+need to take two signals and NAND them together. Unfortunately, there is    :
+no spare NAND gates available on the board for us to use so here's where    :
+the 74LS00 comes in.                                                        :
+                                                                            :
+Again, the card cage does not have a lot of clearance available when cards  :
+are side by side in the cage. To keep things as low to the card as          :
+possible, take the 14-pin socket and bend the pins out. Then solder the     :
+socket pins to the breadboard (on the trace side - surface mount). We will  :
+then use a spot of epoxy or silicone to stick the breadboard to an empty    :
+spot on the board somewhere (I stuck mine right under the SEGA/Gremlin      :
+writing). Because the breadboard only has printed circuit on the top side,  :
+we don't have to worry about a short.                                       :
+                                                                            :
+Take some more speedwire and make the following jumpers:                    :
+- pin 7 of socket to ground                                                 :
+- pin 14 of socket to +5v                                                   :
+- pin 1 of socket to U29 pin 3                                              :
+- pin 2 of socket to U29 pin 12                                             :
+- pin 3 of socket to pin 22 of the 28-pin socket                            :
+                                                                            :
+That's it for board modifications. Now we just have to burn our eprom. We   :
+need to take the existing game binaries and create one large 64K file. The  :
+first 2K needs to be blank, then all the game images need to be appended,   :
+then blanks for the balance of the 64K.                                     :
+                                                                            :
+For example:                                                                :
+Using the DOS COPY command (you can also use Unix CAT) as follows, we       :
+create a 64K image for Space Fury:                                          :
+                                                                            :
+COPY /B 2KBlank.bin + 960a.u1 + 961a.u2 + 962a.u3 + 963a.u4 +               :
+964a.u5 + 965a.u6 + 966a.u7 + 967a.u8 + 968a.u9 + 2KBlank.bin               :
++ 2KBlank.bin + 8KBlank.bin + 32KBlank.bin LARGE.BIN                        :
+                                                                            :
+The /B command tells COPY to concatinate binary files.                      :
+2KBlank.bin is just an empty ($FF) 2K file.                                 :
+8KBlank.bin is just an empty ($FF) 8K file.                                 :
+32KBlank.bin is just an empty ($FF) 32K file.                               :
+                                                                            :
+We end up with a 64K LARGE.BIN file for the 27512.  So now just burn the    :
+chip, plug it and the 74LS00 into their respective sockets, and you're      :
+all done!                                                                   :
+                                                                            :
++---------------------------------------------------------------------------.
+
++---------------------.
+ Future Considerations \ 
++-----------------------`---------------------------------------------------.
+                                                                            :
+If you're really ambitious, you could investigate using a larger eprom and  :
+have switches on the board to allow switching between games without         :
+swapping the eprom.  You could also consider using a ZIF socket instead of  :
+a regular socket for the eprom to make swapping easier.  You just need to   :
+be carefull about the height of your modifications so the board will still  :
+fit in one slot space.                                                      :
+                                                                            :
+Please send me any corrections you note - thanks!                           :
+                                                                            :
++---------------------------------------------------------------------------.

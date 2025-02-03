@@ -1,0 +1,24 @@
+These are all for 2716 EPROMS.
+I have referenced the chip locations by the silk screen name on the PCB, 
+the physical location, and the file name on the EPROM sticker.
+
+ROM  Location  File Name     Checksum   Notes
+x       D1     136002.113      8392
+0       E1     136002.114      189b
+1       F1     136002.115      ed68
+2       H1     136002.116      257f
+3       J1     136002.117      5246
+4       K1     136002.118       1e3
+5       L/M1   136002.119      6340
+6       M/N1   136002.120      eac1
+7       P1     136002.121      7b1e
+8       R1     136002.122      7691
+        N/P3   136002.111/123  6b4c    111 & 123 are the same
+        R3     136002.112/124  2d05    112 & 124 are the same
+
+rev.2
+3       J1     136002.217      5244    fixes the score cheat
+8       R1     136002.222      82ad    in test mode, changes spinner letters to a line (maybe other fixes)
+
+rev.3
+2       H1     136002.316      25e1    fixes screen collapse between players when using newer deflection board - Made this file by splitting version 3 roms

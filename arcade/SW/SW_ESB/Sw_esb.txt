@@ -1,0 +1,63 @@
+These are the combined Star Wars and Empire Strikes Back ROM images for use 
+with an ESB clone daughterboard and Slapstic clone PAL to make a switchable
+Star Wars/Empire Strikes Back game.
+
+For more imformation, please go to the Empire Strikes Back area of Jess Askey's 
+Atari Vector Games WWW page.  (http://magenta.com/~jess)
+
+These ROMs are named with the PCB designators, NOT Atari part numbers!
+
+CPU_xxx.BIN  are EPROMs on the CPU board
+AVG_xxx.BIN  are EPROMs on the AVG board
+SND_xxx.BIN  are EPROMs on the SND board
+ESB_xxx.BIN  are EPROMs on the ESB Daughtercard
+PROM_xx.BIN  are PROMs on the CPU board
+SLAPSTIC.JED is a 22V10 PAL/GAL on the ESB Daughtercard
+
+Note:  The U2 and U3 parts on the ESB Daughtercard are named to go with the PCB
+       from Clay Cowgill (clay@supra.com) and the PAL from Cliff Koch.  The part
+       designators may not match up to any other ESB daughtercard.  If your ESB/SW
+       passes self-test, but constantly resets it's possible U2 and U3 are reversed
+       for your particular daughtercard.
+
+All ROMS except "AVG_1L.BIN" and 27C256's.  "AVG_1L.BIN" is a 27C64.
+
+PROM_xx.BIN are 82S137's and SLAPSTIC.JED is a 22V10 PAL or GAL.
+
+The ROMs are built as follows:
+
+File		Atari Part # 	Address Range
+----------------------------------------------
+CPU_1F.BIN	SW  136021-114  $0000-$3fff
+		ESB 136031-101  $4000-$7fff
+
+CPU_1JK.BIN	SW  136021-203	$0000-$1fff
+		SW  136021-203  $2000-$3fff
+		ESB 136031-102  $4000-$7fff
+ 
+CPU_1KL.BIN	SW  136021-104	$0000-$1fff
+		SW  136021-104  $2000-$3fff
+		ESB 136031-203  $4000-$7fff
+
+CPU_1M.BIN	SW  136021-206	$0000-$1fff
+		SW  136021-206  $2000-$3fff
+		ESB 136031-104  $4000-$7fff
+
+ESB_U2.BIN	SW  136021-102  $0000-$1fff
+		SW  136021-102  $2000-$3fff
+		ESB 136031-106  $4000-$7fff
+
+ESB_U3.BIN	SW  136021-102  $0000-$1fff
+		SW  136021-102  $2000-$3fff
+		ESB 136-31-105  $4000-$7fff
+
+SND_1H.BIN	SW  136021-208  $0000-$1fff
+		SW  136021-208  $2000-$3fff
+		ESB 136031-112  $4000-$7fff
+
+SND_1JK.BIN	SW  136021-107  $0000-$1fff
+		SW  136021-107  $2000-$3fff
+		ESB 136031-113  $4000-$7fff
+
+AVG_1L.BIN	SW  136021-105  $0000-$0fff
+		ESB 136031-111  $1000-$1fff

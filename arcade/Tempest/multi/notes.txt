@@ -1,0 +1,7 @@
+This should be the graphic ROM image-- it goes on a 27C256 or similar, or you can double it up on to a 27C512.
+
+It's very peculiar that there's more than one problem happening at once though (re: the reset adapter).  I wonder if your power supply didn't go on a little rampage and cause some damage.  The chip on the reset adapter is a Maxim MAX4614, if I recall correctly.
+
+The vector ROM is a reasonable place to start, but I would really suspect Vortex to have trouble too if it had completely failed.  The menu and Vector Breakout don't use the vector ROM, so they should generally "always work" as long as the CPU and main flash chip are good.
+
+-Clay

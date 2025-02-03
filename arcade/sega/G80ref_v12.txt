@@ -1,0 +1,1029 @@
+Sega G80 Hardware Reference
+Version 1.20
+25 Oct 1997
+
+Main Processor: 	Z80 at 3.86712 MHz (vector games)
+			Z80 at 8.00000 MHz (raster games)
+Sound Processor: 	8035
+
+Test button on CPU board asserts NMI
+40Hz interrupt from vector timing board
+There is an 8*8 hardware multiplier on the XY control board
+
+Memory Map
+
+0000 - 07FF		2k ROM on CPU board (power on diagnostics)
+0800 - BFFF		46k ROM board
+C800 - CFFF		2k RAM on CPU board
+D000 - DFFF		downloadable RAM on universal sound board
+E000 - EFFF		4k Vector RAM
+E000 - E3FF		Raster screen RAM
+E800 - EFFF		Raster character RAM (bit 1)
+F000 - F03F		Raster color RAM
+F040 - F07F		Raster background color RAM (Monster Bash)
+F800 - FFFF		Raster character RAM (bit 2)
+
+------------------------------- I/O INPUT PORTS -------------------------------
+
+Tac/Scan, Star Trek, and Zektor  read either the panel switches (1)
+or spinner (0) based on the setting of the LSB the output port at 0xf8
+The value written appears to always be 0xff or 0xfe in these games.
+
+4 Player Eliminator has an I/O expansion board to two additional control
+ports, and a port to sense which coin mech was activated. All of the
+coin inputs are logically or-ed together to activate the coin 1 input.
+
+The two added I/O ports are selected on port 0xfc based on the bits written
+out to port 0xf8. There is also a latch on the I/O expander board to select
+which lockout on the coin mech to activate from the coin mech 1 output. If
+bit 0x10 of port f8 is 0, it selects the latch, if it is a 1, it activates
+the two added input ports. Writing 0x1f selects the coin sense register,
+writing 0x1e selects the red and yellow player switch inputs.
+
+Input bits are active LOW, with the exception of port 0xFC where
+they are active HIGH. 
+
+The coin input bits need to be activated with an impulse.  These are timed
+to prevent false coin inputs.  Timing adjustments can be verified on the
+test screens.
+
+The spinner value appears to always increment when it is rotated in
+either direction. If the DIR bit is 1, the spinner is spinning counter-
+clockwise. The dir bit changes state when the direction of rotation
+changes.
+
+CPU BOARD
+---------
+
+0xFC (374)
+NOTE: The port bits are active HIGH
+
++---------+---------+---------+---------+---------+---------+---------+--------+
+|   D7    |   D6    |   D5    |   D4    |   D3    |   D2    |   D1    |   D0   |
++=========+=========+=========+=========+=========+=========+=========+========+
+|  P1-30  |  P1-29  |  P1-28  |  P1-27  |  P1-26  |  P1-25  |  P1-24  |  P1-23 |
++---------+---------+---------+---------+---------+---------+---------+--------+
+|RotL P2  |RotR P2  | FIRE P2 |THRUST P2|   <--- SPACE FURY (cocktail)         |
++---------+---------+---------+---------+---------+---------+---------+--------+
+ELIMINATOR --->                                   |RotR Red |ThrustRed|Fire Red|
++---------+---------+---------+---------+---------+---------+---------+--------+
+STAR TREK  --->     | WARP    | PHOTON  | PHASER  | IMPULSE | 2Player |1Player |
++---------+---------+---------+---------+---------+---------+---------+--------+
+TAC/SCAN   --->     |         |         | ADD SHIP| FIRE    | 2Player |1Player |
++---------+---------+---------+---------+---------+---------+---------+--------+
+ZEKTOR     --->     |         |         | THRUST  | FIRE    | 2Player |1Player |
++---------+---------+---------+---------+---------+---------+---------+--------+
+SPACE ODYSSEY --->  |         |         |         | DOWN    | LEFT    | RIGHT  |
++---------+---------+---------+---------+---------+---------+---------+--------+
+
+or..
+
++---------+---------+---------+---------+---------+---------+---------+--------+
+|       <------------- 7 bit count from spinner -------------->       |  Dir   |
++---------+---------+---------+---------+---------+---------+---------+--------+
+
+
+on 4 player Eliminator...
+
+0x1f output to port 0xf8
+
++---------+---------+---------+---------+---------+---------+---------+--------+
+|         |         |         |         |Yel coin |Red coin |Grn coin |Blu coin|
++---------+---------+---------+---------+---------+---------+---------+--------+
+
+0x1e output to port 0xf8
+
++---------+---------+---------+---------+---------+---------+---------+--------+
+| Red L   | Red R   | Red Thr | Red Fire| Yel L   | Yel R   | Yel Thr |Yel Fire|
++---------+---------+---------+---------+---------+---------+---------+--------+
+
+0xFB (373)
+NOTE: The port bits are active LOW
+
++---------+---------+---------+---------+---------+---------+---------+--------+
+|   D7    |   D6    |   D5    |   D4    |   D3    |   D2    |   D1    |   D0   |
++=========+=========+=========+=========+=========+=========+=========+========+
+|  -----  |  -----  |  P1-17  |  P1-21  | SW1-5   | SW1-1   | SW2-5   | SW2-1  |
++---------+---------+---------+---------+---------+---------+---------+--------+
+SPACE FURY --->     | FIRE P1 |THRUST P1|         |         |         |        |
++---------+---------+---------+---------+---------+---------+---------+--------+
+ELIMINATOR --->     |Fire BLU | RotL RED|         |         |         |        |
++---------+---------+---------+---------+---------+---------+---------+--------+
+ELIM 4P    --->     | ROTL GRN| ROTL BLU|         |         |         |        |
++---------+---------+---------+---------+---------+---------+---------+--------+
+ASTRO BLASTER --->  | Fire    | Warp    |         |         |         |        |
++---------+---------+---------+---------+---------+---------+---------+--------+
+005        --->     | Fire    | Down    |         |         |         |        |
++---------+---------+---------+---------+---------+---------+---------+--------+
+MONSTER BASH  --->  | Fire    | Down    |         |         |         |        |
++---------+---------+---------+---------+---------+---------+---------+--------+
+SPACE ODYSSEY --->  | Fire    |         |         |         |         |        |
++---------+---------+---------+---------+---------+---------+---------+--------+
+
+
+0xFA (372)
+NOTE: The port bits are active LOW
+
++---------+---------+---------+---------+---------+---------+---------+--------+
+|   D7    |   D6    |   D5    |   D4    |   D3    |   D2    |   D1    |   D0   |
++=========+=========+=========+=========+=========+=========+=========+========+
+|  -----  |  P1-14  |  P1-16  |  P1-20  |  SW1-6  |  SW1-2  |  SW2-6  | SW2-2  |
++---------+---------+---------+---------+---------+---------+---------+--------+
+SPACE FURY --->     | RotL P1 | RotR P1 |         |         |         |        |
++---------+---------+---------+---------+---------+---------+---------+--------+
+|         |RotL BLU |RotR BLU |ThrustBLU|         |      <---- ELIMINATOR      |
++---------+---------+---------+---------+---------+---------+---------+--------+
+|         |Fire GRN |RotR GRN |RotR BLU |                <---- ELIM 4P         |
++---------+---------+---------+---------+---------+---------+---------+--------+
+|         |         | Left    | Right   |         |      <---- ASTRO BLASTER   |
++---------+---------+---------+---------+---------+---------+---------+--------+
+|         | Up      | Left    | Right   |         |      <---- 005             |
++---------+---------+---------+---------+---------+---------+---------+--------+
+|         | Up      | Left    | Right   |         |      <---- MONSTER BASH    |
++---------+---------+---------+---------+---------+---------+---------+--------+
+|         |         | Fire2   |         |         |      <---- SPACE ODYSSEY   |
++---------+---------+---------+---------+---------+---------+---------+--------+
+
+
+
+0xF9 (371) 
+NOTE: The port bits are active LOW
+
++---------+---------+---------+---------+---------+---------+---------+--------+
+|   D7    |   D6    |   D5    |   D4    |   D3    |   D2    |   D1    |   D0   |
++=========+=========+=========+=========+=========+=========+=========+========+
+|  -----  |  P1-13  |  P1-15  |  P1-19  |  SW1-7  |  SW1-3  |  SW2-7  |  SW2-3 |
++---------+---------+---------+---------+---------+---------+---------+--------+
+SPACE FURY --->     | 1Player | 2Player |         |         |         |        |
++---------+---------+---------+---------+---------+---------+---------+--------+
+ELIM 4P    --->     |ThrustGRN|ThrustBLU|         |         |         |        |
++---------+---------+---------+---------+---------+---------+---------+--------+
+ASTRO BLASTER --->  | 1Player | 2Player |         |         |         |        |
++---------+---------+---------+---------+---------+---------+---------+--------+
+005           --->  | 1Player | 2Player |         |         |         |        |
++---------+---------+---------+---------+---------+---------+---------+--------+
+MONSTER BASH  --->  | 1Player | 2Player |         |         |         |        |
++---------+---------+---------+---------+---------+---------+---------+--------+
+SPACE ODYSSEY --->  | 1Player | 2Player |         |         |         |        |
++---------+---------+---------+---------+---------+---------+---------+--------+
+
+0xF8 (370)
+NOTE: The port bits are active LOW
+
++---------+---------+---------+---------+---------+---------+---------+--------+
+|   D7    |   D6    |   D5    |   D4    |   D3    |   D2    |   D1    |   D0   |
++=========+=========+=========+=========+=========+=========+=========+========+
+| COIN A  | COIN B  | SERVICE | P1-18   |  SW1-8  |  SW1-4  |  SW2-8  |  SW2-4 |
++---------+---------+---------+---------+---------+---------+---------+--------+
+ELIM 4P    --->               |FIRE BLU |         |         |         |        |
++---------+---------+---------+---------+---------+---------+---------+--------+
+SPACE ODYSSEY --->            | Up      |         |         |         |        |
++---------+---------+---------+---------+---------+---------+---------+--------+
+
+SWITCH MAPPINGS
+---------------
+
++------+------+------+------+------+------+------+------+
+|SW1-8 |SW1-7 |SW1-6 |SW1-5 |SW1-4 |SW1-3 |SW1-2 |SW1-1 |
++------+------+------+------+------+------+------+------+
+ F8:08 |F9:08 |FA:08 |FB:08 |F8:04 |F9:04  FA:04  FB:04    Zektor &
+       |      |      |      |      |      |                Space Fury
+       |      |      |      |      |      |
+   1  -|------|------|------|------|------|--------------- upright
+   0  -|------|------|------|------|------|--------------- cocktail
+       |      |      |      |      |      |
+       |  1  -|------|------|------|------|--------------- voice
+       |  0  -|------|------|------|------|--------------- no voice
+              |      |      |      |      |
+              |  1   |  1  -|------|------|--------------- 5 ships
+              |  0   |  1  -|------|------|--------------- 4 ships
+              |  1   |  0  -|------|------|--------------- 3 ships
+              |  0   |  0  -|------|------|--------------- 2 ships
+                            |      |      |
+                            |  1   |  1  -|--------------- hardest
+                            |  0   |  1  -|--------------- hard
+1 = Open                    |  1   |  0  -|--------------- medium
+0 = Closed                  |  0   |  0  -|--------------- easy
+
++------+------+------+------+------+------+------+------+
+|SW2-8 |SW2-7 |SW2-6 |SW2-5 |SW2-4 |SW2-3 |SW2-2 |SW2-1 |
++------+------+------+------+------+------+------+------+
+|F8:02 |F9:02 |FA:02 |FB:02 |F8:01 |F9:01 |FA:01 |FB:01 |
+|      |      |      |      |      |      |      |      |
+|  0   |  0   |  0   |  0   |  0   | 0    | 0    |  0   | 4 coin/ 1 play
++------+------+------+------+------+------+------+------+
+|  1   |  0   |  0   |  0   |  1   | 0    | 0    |  0   | 3 coin/ 1 play
++------+------+------+------+------+------+------+------+
+|  0   |  1   |  0   |  0   |  0   | 1    | 0    |  0   | 2 coin/ 1 play
++------+------+------+------+------+------+------+------+
+|  1   |  1   |  0   |  0   |  1   | 1    | 0    |  0   | 1 coin/ 1 play
++------+------+------+------+------+------+------+------+
+|  0   |  0   |  1   |  0   |  0   | 0    | 1    |  0   | 1 coin/ 2 play
++------+------+------+------+------+------+------+------+
+|  1   |  0   |  1   |  0   |  1   | 0    | 1    |  0   | 1 coin/ 3 play
++------+------+------+------+------+------+------+------+
+|  0   |  1   |  1   |  0   |  0   | 1    | 1    |  0   | 1 coin/ 4 play
++------+------+------+------+------+------+------+------+
+|  1   |  1   |  1   |  0   |  1   | 1    | 1    |  0   | 1 coin/ 5 play
++------+------+------+------+------+------+------+------+
+
+X/Y CONTROL BOARD
+-----------------
+
+0xBF (277)	????? set to 0 or (mostly to..) 4
+0xBE (276)	16 bit product returned as  L, H in two I/O operations
+0xBD (275)	current vector PC 8-11 (???)
+0xBC (274)	current vector PC 0-7  (???)
+
+VIDEO BOARD (Raster)
+-----------
+
+0xBF (277)
+	D0:  1 for cocktail flip, 0 to disable
+	D1:  1 to initiate color RAM write, 0 to disable
+	D2:  always set to 1?
+
+BACKGROUND BOARD (Raster - Monster Bash)
+----------------
+NOTE:  Used in conjunction with VIDEO BOARD.
+
+0xBC (274)
+NOTE:  D0-D1 should always equal D2-D3.
+	D0-D1:  Character bank for Background Video ROM (bit 1) (U13)
+	D2-D3:  Character bank for Background Video ROM (bit 2) (U8)
+	D4-D6:  Scene bank for Background Video ROM (U22)
+	D7:     1 to draw background, 0 to clear
+
+0xBF (277)
+	D2:  always set to 1?
+	D6:  1 to initial background color RAM write, 0 to disable
+
+UNIVERSAL SOUND BOARD
+---------------------
+
+0x3f (077)
+
+------------------------------- I/O OUTPUT PORTS -------------------------------
+
+CPU BOARD
+---------
+
+0xF9 (371)
+
++---------+---------+---------+---------+---------+---------+---------+--------+
+|   D7    |   D6    |   D5    |   D4    |   D3    |   D2    |   D1    |   D0   |
++=========+=========+=========+=========+=========+=========+=========+========+
+|CoinCtrA |CoinCtrB |         |         |         |         |         |        |
++---------+---------+---------+---------+---------+---------+---------+--------+
+
+
+0xF8 (370)
+
++---------+---------+---------+---------+---------+---------+---------+--------+
+|   D7    |   D6    |   D5    |   D4    |   D3    |   D2    |   D1    |   D0   |
++=========+=========+=========+=========+=========+=========+=========+========+
+|         |         |         |         |         |         |         |Port Sel|
++---------+---------+---------+---------+---------+---------+---------+--------+
+
+4player Eliminator
++---------+---------+---------+---------+---------+---------+---------+--------+
+|    select coin switches     |   1     |   1     |   1     |   1     |   0    |
++---------+---------+---------+---------+---------+---------+---------+--------+
+|    select red/yel inputs    |   1     |   1     |   1     |   1     |   1    |
++---------+---------+---------+---------+---------+---------+---------+--------+
+|                             |   0     |   1     |   1     | coin cntrs  0-3  |
++---------+---------+---------+---------+---------+---------+---------+--------+
+
+X/Y Control
+-----------
+0xbf (277)	
+0xbe (276)	8 bit multiplier
+0xbd (275)	8 bit multiplicand
+
+
+Universal Sound Board (800-0377)
+--------------------------------
+0x3f (077)		1000 0000 = reset 8035 (OUTPUT)
+                         ccc cccc = sound command
+
+0x3f                    1000 000x  == board ready for next byte from main CPU
+The universal sound board has a 4k RAM for program code which is
+downloaded from the main processor. The CPU on the sound card is
+reset by toggling the msb on port 3f. The board is ready for the
+next sound command when a read of port 3f returns 80 (the ls bit
+is masked off).
+
+Here are the commands sent to the board during self test in tac/scan
+The coin inserted sound appears to be 0x2c
+
+There appear to be continuous sounds that you have to turn off with
+a second command, and one-shot sounds.
+
+There is a four byte sequence that is sent out before the first
+sound was sent. Each byte sent to the USB waits for 0x80 to be
+returned on port 3f.
+
+Initial byte sequence for tac/scan
+
+0c 04 37 38
+
+TAC/SCAN Sounds (USB loaded from A000 in main EPROMS)
+
+40 (PLAYER SHIP ROAR) 10 (stop)
+
+18 (PLAYER SHIP LASER)
+
+20 (PLAYER SHIP EXPLOSION)
+
+28 (PLAYER SHIP DOCKING)
+
+48 (TUNNEL HIGH LIGHT)
+
+50 (STINGER THRUST) 52 (stop)
+
+51 (STINGER LASER) 52 (stop)
+
+54 (STINGER EXPLOSION)
+
+62 (ENEMY BULLET)
+
+6e (ENEMY SHIP EXPLOSION)
+
+
+Star Trk Sounds (USB Loaded from 5400 in main EPROMs)
+
+8     PHASER
+a     PHOTON
+e     TARGETING
+10    DENY
+12    SHEILD HIT
+14    ENTERPRISE HIT
+16    ENT EXPLOSION
+1a    KLINGON EXPLOSION
+1c    DOCK
+1e    STARBASE HIT
+11    STARBASE RED
+22    STARBASE EXPLOSION
+24    SMALL BONUS
+25    LARGE BONUS
+26    STARBASE INTRO
+27    KLINGON INTRO
+28    ENTERPRISE INTRO
+29    PLAYER CHANGE
+2e    KLINGON FIRE
+4,5   IMPULSE
+6,7   WARP
+c,d   RED ALERT
+18,2f WARP SUCK
+19,2f SAUCER EXIT
+2c,21 NOMAD MOTION
+2d,21 NOMAD STOPPED
+2b    COIN DROP MUSIC
+2a    HIGH SCORE MUSIC
+
+
+Zektor Sound Board (800-3249)
+-----------------------------
+
+Ref Des         ELIMINATOR      ZEKTOR
+R5              10K             4.7K
+R9              33K             12K
+R71             270K            100K
+R79             2 MEG           unused
+R122            220K            390K
+R132            220K            100K
+C9              0.01uF          0.0047uF
+C46             0.022uF         0.047uF
+
+
+Eliminator Sound Board (800-3174)
+---------------------------------
+
+inputs
+0x3c-0x3f
+
+d0 speech ready
+
+outputs ( 0 = ON)
+
+0x3e (076)
+
+d7	torpedo 2
+d6	torpedo 1
+d5	bounce
+d4	explosion 3
+d3	explosion 2
+d2	explosion 1
+d1	fireball
+d0	-
+
+0x3f (077)
+
+d7	background msb
+d6	background lsb
+d5	enemy ship
+d4	skitter
+d3	thrust msb
+d2	thrust lsb
+d1	thrust hi
+d0	thrust lo
+
+Space Fury Sound Board (800-0241)
+---------------------------------
+
+0x3e (076) (0 = ON)
+
+d7	partial warship, low frequency oscillation
+d6	star spin
+d5	-
+d4	-
+d3	-
+d2	thrust, low frequency noise
+d1	fire, metalic buzz
+d0	craft scale, rising tone
+
+0x3f (077)
+
+d7	-
+d6	-
+d5	docking bang
+d4	large explosion
+d3	small explosion, low frequency noise
+d2	fireball
+d1	shot
+d0	crafts joining
+
+
+Speech Board Description
+========================
+
+The speech board is similar in architecture to the universal sound
+board. It has an 8035 (or 8039) microcontroller which communicates
+with the main Z80 through port 0x38.
+
+The board uses a General Instruments SP0250 Speech Synthesiser which
+encodes in a proprietary LPC-12 format.
+
+This is all i've been able to find out about the SP0250
+
+There are 15 parameters each of 1 byte, which are input to pins 3 2 28
+27 26 25 24 23 (3 is Most Significant Bit). The bytes are labelled (in
+order) C21, C11, Amplitude, C22, C12, Pitch, C23, C13, Repeat, C24, C14,
+C25, C15, C26, C16.
+
+The C's are the twelve (reflection?) coefficients, where the MSB is the
+sign, 1 = pos.
+The amplitude in direct data mode has the 3 MSBs as exponent.
+The pitch does not have a sign bit.
+Repeat has MSB set to 0, MSB-1 set to V(u), remaining bits the repeat
+value. It does not say what V(u) is (there is a bar over the u). It may
+be the voiced/unvoiced flag.
+
+Finally there is a description of a byte which may be an alternative to
+the amplitude. The MSB is sign 1 = neg, the rest is amplitude. A note
+says "exponent from normal mode remains until changed".
+
+Space Fury Speech Board (800-0183)
+---------------------------------
+
+inputs
+
+0x39 (071)		D7 = Votrax done
+
+outputs
+
+0x38 (070)		D0-D6 = 8035 inputs , D7 = T0 Toggle
+                        Output phrase number, wait, or with 0x80
+                        and output again.
+ 
+0x39 (071)              Votrax P0-P5
+0x3A (072)              Votrax ctl
+0x3B (073)		Timer 0,1,2, mono,L,R sel
+0x3C (074)
+to
+0x3F (077)              8253 Timer
+
+Note: The Votrax and Timer chip, along with the left/right mux
+      are left unpopulated on the 800-0294 version used in Zektor
+      and Star Trek. There appears to be a 'stereo spreader'
+      circuit on the board, using a bucket-brigade analog delay.
+
+
+Looking at the fuse map for the address decoder prom, there appears
+to be no way to address the analog switch on the output of the SP250
+so it always stays in the 'A' switch position.
+
+Voice Board Phrases (Space Fury)
+--------------------------------
+0x38 (070)
+
+0  = no phrase
+1  = "SO"
+2  = "A CREATURE FOR MY AMUSEMENT"
+3  = "PREPARE FOR BATTLE"
+4  = "YOU DEFEATED MY SCOUTS"
+5  = "WELL MY CRUISERS WILL DESTROY YOU"
+6  = "YOU ARE STARTING TO ANNOY ME CREATURE"
+7  = "MY DESTROYERS WILL ANNIHILATE YOU"
+8  = "YOU SURVIVED!"
+9  = "WARSHIPS, DISPOSE OF THIS ANNOYANCE AT ONCE"
+A  = "WELL DONE"
+B  = "PREPARE TO BATTLE MY ENTIRE FLEET"
+C  = "IS THERE NO WARRIOR MIGHTER THAN I?"
+D  = "DOES ANYONE DARE CHALLENGE MY IMPERIAL FLEET?"
+E  = "OUR BATTLE IS COMPLETED WARRIOR"
+F  = "YOU WERE"
+10 = "AN EASY"
+11 = "AN AMUSING"
+12 = "AN ADEQUATE"
+13 = "A STIMULATING"
+14 = "AN OUTSTANDING"
+15 = "OPPONENT"
+16 = no phrase
+3f = concatinate phrases
+
+Voice Board Phrases (Star Trek)
+-------------------------------
+
+0x38 (070)
+
+00 = no phrase
+01 = "COMMAND THE ENTERPRISE"
+02 = "PLAY STAR TREK"
+03 = "WELCOME ABOARD, CAPTAIN" (SPOCK)
+04 = "CONGRATULATIONS"
+05 = "HIGH SCORE"
+06 = "PRESS PLAYER ONE"
+07 = "OR PLAYER TWO"
+08 = "START"
+09 = "BE THE CAPTAIN OF THE STARSHIP ENTERPRISE" (SCOTTY)
+0A = "DAMAGE REPAIRED, SIR" (SCOTTY)
+0B = "SECTOR SECURED" (CHECKOV)
+0C = "ENTERING SECTOR" (SPOCK)
+0D = "ZERO"
+0E = "ONE"
+0F = "TWO"
+10 = "THREE"
+11 = "FOUR"
+12 = "FIVE"
+13 = "SIX"
+14 = "SEVEN"
+15 = "EIGHT"
+16 = "NINE"
+17 = "POINT"
+18 = "POINT" (HIGHER PITCH)
+19 = "RED ALERT"
+
+
+Voice Board Phrases (Zektor)
+----------------------------
+
+0x38 (070)
+
+0  = no phrase
+1  = "So, you've come to take Ascella back" (Male)
+2  = "I rule Faltar now" (M)
+3  = "You'll have to fight for it" (M)
+4  = "Centaurus is my world now" (M)
+5  = "Sooo... We meet again creature" (M)
+6  = "Prepare for battle" (M)
+7  = "Warriors needed to defeat alien robots" (Female)
+8  = "Approaching" (F)
+9  = "defense ring" (F)
+A  = "the city" (F)
+B  = "One" (F)
+C  = "Two" (F)
+D  = "Three" (F)
+E  = "Ahhh... Another warrior attempting to regain Baitos"
+F  = "You will not take it from me" (F)
+10 = "I have conquered Eridonus" (F)
+11 = "Once Deneballa was yours" (F)
+12 = "Graffas belongs to me" (F)
+13 = "I will never give it back" (F)
+14 = no phrase
+
+
+Display Controller
+-----------------
+
+The vector processor starts at vector ram adr 0
+The vector PC is reset 40 times /second.
+Display list state machine stops when Last Symbol detected.
+
+
+Vector Display RAM contents:
+
+Symbol Instructions (10 bytes / symbol)
+
+byte 1          <draw symbol, last symbol>              L x x x x x x D
+                                                        ^             ^
+                                                        |             |
+                                                        |             +-visible
+                                                        |
+                                                        +- last symbol
+
+byte 2,3        X start (DAC initial)                   x axis up/down counters
+byte 4,5        Y start (DAC initial)                   y axis up/down counters
+byte 6,7        adr of line instructions                vector address counter
+
+byte 8,9        appearance, angle                       symbol angle latch
+							10 bit angle
+
+byte 10         size                                    draw time multiplier
+							0xff == 2x
+                                                        0x80 == 1x
+							0x40 == 1/2
+
+Line Instructions ( 4 bytes / line )
+
+byte 1          <last line, color, unblank>             L R R G G B B D
+                                                        ^             ^
+                                                        |             +-visible
+                                                        +-last vector
+
+byte 2          length                                  vector length
+
+byte 3          line angle                              vector angle
+
+byte 4          screen quadrant (0-3)                   direction to draw
+
+                2 | 3
+                --+--
+                1 | 0
+
+Bytes 3 and 4 really could be thought of as a little-endian 10 bit angle, but
+the hardware is described this way in the service manual. In hardware, the
+top two bits determine count direction in the x or y  up/down counters that
+draw the line.
+
+The vector length is the value loaded into the x and y counters after scaling
+and being scaled by a hardware lookup in a sine / cosine lookup ROM. A line
+with length x and angle 0 has all of its length component in the x count value,
+a line with length x and (binary) angle 45 degrees has equal length values in
+x and y.
+
+Screen Coordinate System:
+
+The screen position is represented by a pair of 11 bit values (two bytes
+each) in each symbol structure.
+
+The screen itself can be thought of as this:
+
+2048
+  |
+  |
+  |
+  |
+  |
+  +------------ 2048
+ 0,0
+
+That is, the origin is in the lower left hand corner and coordinates move
+up and right.
+
+The center of the screen is 0x400,0x400.
+
+A hardware clipping circuit clips the screen to a subset of this amount:
+
+            1536
+    +-------------------+
+    |                   |
+    |                   |
+    |                   |
+ 512|     1024,1024     |1536
+    |                   |
+    |                   |
+    |                   |
+    +-------------------+
+             512
+
+The center is at 1024,1024.
+
+The display "clips" at the same values on the x and y axis, so since the
+display isn't exactly square there must be a little distortion.  (a square
+should be slightly wider than tall on the screen)
+
+Hardware Scaling:
+
+Scaling is simple binary scaling with a single byte value.
+0x80 appears to be 1:1, 0xFF is 2:1
+0x40 is 1:2, 0x20 is 1:4, 0x10 is 1:8 etc...
+This means that there's more "dynamic range" in the bottom end of the
+scaling, so things should look nicer if drawn large and scaled down.
+
+Since the vector generator always starts at 0 in vector RAM, and there
+is no way to stop the vector PC from resetting every 40th of a second,
+the symbol list for a game is not very dynamic. There is hardware on
+the display controller card to be able to read the current positon of
+the display PC, but no games appear to use it. Items to be displayed are
+marked as visible when they should appear on the screen, and the end
+of the symbol list is marked with the most significant bit of the first
+symbol byte set to '1'.
+
+Symbol Samples:
+
+"0"	51 40 00 01	draw top left to right
+	51 60 30 02	draw right side (slanted) top to bottom
+	51 40 00 03	draw bottom right to left
+	d1 60 30 00	draw left side (slanted) bottom to top
+
+"1"	7E 20 00 01	move 0x20 units to the right
+	d1 60 30 02	draw (slanted) top to bottom
+
+"2"	51 40 00 01	draw top left to right
+	51 30 30 02	symbol drawn "downwards"....
+	51 40 00 03
+	51 30 30 02
+	d1 40 00 01
+
+"3"	51 40 00 01	top bar
+	51 60 30 02	right side
+	51 40 00 03	bottom
+	7e 5d a6 00	move to middle of right side
+	d1 30 00 03	draw middle bar right to left
+
+"4"	51 30 30 02
+	51 48 00 01
+	7e 2e 00 00
+	d1 60 30 02
+
+"5"	51 40 00 01
+	7e 40 00 03
+	51 30 30 02
+	51 40 00 01	
+	51 30 30 02
+	d1 40 00 03
+
+
+Raster Display Controller
+-------------------------
+
+All graphics are in 2-bit color.  There are 256 different possible color values,
+which are determined by a byte containing the bits BBGGGRRR.  Four of these
+bytes are used to describe the colors for any given sprite value.  The color 
+values are stored in a RAM that holds 64 bytes of information.  These values
+are periodically changed during game play.  Sprites are represented by a byte;
+every 16 consecutive sprites share the same color scheme.  Hence the 64 bytes
+(16 sprite color sets * 4 colors).  The Monster Bash Background Board has an
+additional 64-byte RAM to hold the background colors.
+
+The graphics data is stored as 1-bit data - the two color bits are kept
+completely separate.  On the Video Board, U16-U23 holds one color bit, and 
+U24-U31 holds the other color bit.  On the Monster Bash Background Board,
+U8 holds one color bit, and U13 holds the other color bit.
+
+The sprites are 8 pixels by 8 pixels.  Each sprite is stored as 8 consecutive
+bytes in memory.  The screen size is 28 sprites in the X direction by 32
+sprites in the Y direction.
+
+
+The Infamous U21 Security Chip
+------------------------------
+
+There are a total of six different security chips produced - 31562, 31563,
+31564, 31570, 31576, and 31582.  They all work the same conceptually, but
+have slightly different implementations.  In general, this chip interrupts
+the Z80 memory write instruction LD ($XXYY),A  (opcode $32) and changes the
+value of YY before writing to memory.
+
+There are four different algorithms for changing YY.  These algorithms seem
+like they could be implemented by simply reordering the bits in YY and
+possibly inverting one of them.  The four algorithms can be implemented in
+C using the following code.  Note that one algorithm doesn't do anything - 
+the output matches the input. 'x' represents the output, 'i' represents the
+input.
+
+Algorithm A:
+	/* A */
+	x=i;
+
+Algorithm B:
+	/* B */
+	x=i & 0x03;
+	x+=((i    & 0x80) >> 1);
+	x+=((i    & 0x60) >> 3);
+	x+=((~i) & 0x10);
+	x+=((i    & 0x08) << 2);
+	x+=((i    & 0x04) << 5);
+	x &= 0xFF;
+
+Algorithm C:
+	/* C */
+	x=i & 0x03;
+	x+=((i    & 0x80) >> 4);
+	x+=(((~i) & 0x40) >> 1);
+	x+=((i    & 0x20) >> 1);
+	x+=((i    & 0x10) >> 2);
+	x+=((i    & 0x08) << 3);
+	x+=((i    & 0x04) << 5);
+	x &= 0xFF;
+
+Algorithm D:
+	/* D */
+	x=i & 0x23;
+	x+=((i    & 0xC0) >> 4);
+	x+=((i    & 0x10) << 2);
+	x+=((i    & 0x08) << 1);
+	x+=(((~i) & 0x04) << 5);
+	x &= 0xFF;
+
+The algorithm to use for any particular $32 instruction is determined by
+two bits of the address of the $32 instruction.  The two bits used, and
+which algorithms they map to, are the only differences between the different
+security chips.  Here are the different mappings:
+
+31562:  address bits xxxxxxXX
+XX=00:  Algorithm D
+XX=01:  Algorithm C
+XX=10:  Algorithm B
+XX=11:  Algorithm A
+
+31563:  address bits xxxxXxxX
+XX=00:  Algorithm D
+XX=01:  Algorithm C
+XX=10:  Algorithm B
+XX=11:  Algorithm A
+
+31564:  address bits xxxxxxXX
+XX=00:  Algorithm A
+XX=01:  Algorithm B
+XX=10:  Algorithm C
+XX=11:  Algorithm D
+
+31570:  address bits xxxxXxxX
+XX=00:  Algorithm B
+XX=01:  Algorithm A
+XX=10:  Algorithm D
+XX=11:  Algorithm C
+
+31576:  address bits xxxxXxxX
+XX=00:  Algorithm A
+XX=01:  Algorithm B
+XX=10:  Algorithm C
+XX=11:  Algorithm D
+
+31582:  address bits xxxXxxxX
+XX=00:  Algorithm A
+XX=01:  Algorithm B
+XX=10:  Algorithm C
+XX=11:  Algorithm D
+
+After reading all this, some examples would probably be helpful. :)
+
+Example 1:
+The hardware contains the 31582 chip.  Disassembling the ROM code,
+you discover the following line:
+
+204F:32 20 C8    LD ($C820), A
+
+The $32 occurs at $204F = 00100000 01001111.  We compare against which
+bits are necessary:
+01001111
+xxxXxxxX
+Our pattern is 01, which is Algorithm B.  After putting $20 through 
+Algorithm B, we end up with $14.
+
+The post-security chip line becomes
+204F:32 14 C8    LD ($C814), A
+
+
+Example 2:
+The hardware contains the 31564 chip.  Disassembling the ROM code,
+you discover the following line:
+
+6463:32 78 E0    LD ($E078), A
+
+The $32 occurs at $6463 = 01100100 01100011.  We compare against which
+bits are necessary:
+01100011
+xxxxxxXX
+Our pattern is 11, which is Algorithm D.  After putting $78 through 
+Algorithm D, we end up with $F4.
+
+The post-security chip line becomes
+6463:32 F4 E0    LD ($E0F4), A
+
+
+Sega G80 Backplane Pinout
+-------------------------
+
+1	ground				A	ground
+2	a15				B	a7
+3	a14				C	a6
+4	a13				D	a5
+5	a12				E	a4
+6	a11				F	a3
+7	a10				H	a2
+8	a9				J	a1
+9	a8				K	a0
+10	d7				L	d3
+11	d6				M	d2
+12	d5				N	d1
+13	d4				P	d0
+14	/wait (used by Hw multiplier)	R	/reset
+15	/int				S	/edgint (40Hz interrupt)
+16	/nmi				T	/extclk (CPU clock in)
+17	/ext clk sel (tied low)		U	clk out
+18	/memr				V	/memw
+19	/input				W	/output
+20	/rfsh				X	/mreq
+21	/intack				Y	/AC  (ac power detect)
+22	+5				Z	+5
+23	+5				a	+5
+24	-5				b	-5
+25	+12				c	+12
+26	-12				d	-12
+27					e
+28	/hlt	CPU halted		f	M1
+29	clk phase 2			h
+30	/panel reset			j
+31	src				k
+32	/add				l
+33					m	/fetch
+34					n	/pcc
+35					p
+36					r	7.5Mhz
+37					s
+38					t
+39					u
+40					v
+41					w	/pcr (vector pc reset)
+42					x	speech rdy
+43	ground				y	ground
+
+
+
+ROM Address Map
+---------------
+       Eliminator Elim4Player Space Fury  Zektor  TAC/SCAN  Star Trk
+-----+-----------+-----------+-----------+-------+---------+---------+
+0000 | 969       | 1390      | 969       | 1611  | 1711    | 1873    | CPU u25
+-----+-----------+-----------+-----------+-------+---------+---------+
+0800 | 1333      | 1347      | 960       | 1586  | 1670    | 1848    | ROM u1
+-----+-----------+-----------+-----------+-------+---------+---------+
+1000 | 1334      | 1348      | 961       | 1587  | 1671    | 1849    | ROM u2
+-----+-----------+-----------+-----------+-------+---------+---------+
+1800 | 1335      | 1349      | 962       | 1588  | 1672    | 1850    | ROM u3
+-----+-----------+-----------+-----------+-------+---------+---------+
+2000 | 1336      | 1350      | 963       | 1589  | 1673    | 1851    | ROM u4
+-----+-----------+-----------+-----------+-------+---------+---------+
+2800 | 1337      | 1351      | 964       | 1590  | 1674    | 1852    | ROM u5
+-----+-----------+-----------+-----------+-------+---------+---------+
+3000 | 1338      | 1352      | 965       | 1591  | 1675    | 1853    | ROM u6
+-----+-----------+-----------+-----------+-------+---------+---------+
+3800 | 1339      | 1353      | 966       | 1592  | 1676    | 1854    | ROM u7
+-----+-----------+-----------+-----------+-------+---------+---------+
+4000 | 1340      | 1354      | 967       | 1593  | 1677    | 1855    | ROM u8
+-----+-----------+-----------+-----------+-------+---------+---------+
+4800 | 1341      | 1355      | 968       | 1594  | 1678    | 1856    | ROM u9
+-----+-----------+-----------+-----------+-------+---------+---------+
+5000 | 1342      | 1356      |           | 1595  | 1679    | 1857    | ROM u10
+-----+-----------+-----------+-----------+-------+---------+---------+
+5800 | 1343      | 1357      |           | 1596  | 1680    | 1858    | ROM u11
+-----+-----------+-----------+-----------+-------+---------+---------+
+6000 | 1344      | 1358      |           | 1597  | 1681    | 1859    | ROM u12
+-----+-----------+-----------+-----------+-------+---------+---------+
+6800 | 1345      | 1359      |           | 1598  | 1682    | 1860    | ROM u13
+-----+-----------+-----------+-----------+-------+---------+---------+
+7000 |           | 1360      |           | 1599  | 1683    | 1861    | ROM u14
+-----+-----------+-----------+-----------+-------+---------+---------+
+7800 |                                   | 1600  | 1684    | 1862    | ROM u15
+-----+-----------+-----------+-----------+-------+---------+---------+
+8000 |                                   | 1601  | 1685    | 1863    | ROM u16
+-----+-----------+-----------+-----------+-------+---------+---------+
+8800 |                                   | 1602  | 1686    | 1864    | ROM u17
+-----+-----------+-----------+-----------+-------+---------+---------+
+9000 |                                   | 1603  | 1687    | 1865    | ROM u18
+-----+-----------+-----------+-----------+-------+---------+---------+
+9800 |                                   | 1604  | 1688    | 1866    | ROM u19
+-----+-----------+-----------+-----------+-------+---------+---------+
+A000 |                                   | 1605  | 1709    | 1867    | ROM u20
+-----+-----------+-----------+-----------+-------+---------+---------+
+A800 |                                   | 1606  | 1710    | 1868    | ROM u21
+-----+-----------+-----------+-----------+-------+---------+---------+
+B000 |                                                     | 1869    | ROM u22
+-----+-----------+-----------+-----------+-------+---------+---------+
+B800 |                                                     | 1870    | ROM u23
+-----+-----------+-----------+-----------+-------+---------+---------+
+
+Change Log
+----------
+25 Oct 1997   Add raster games info, security chip info, made Y2K compliant
+ 1 Aug 1997   Fill in trek speech info
+24 Jun 1997   Add info on 4 player Eliminator
+12 Jun 1997   Add Trek sound descriptions
+ 8 Jun 1997   Add basic info for USB, ROM adr map
+ 6 Jun 1997   Correct rotl/r bits for Space Fury, add 1 player
+              control bits for Eliminator.
+30 May 1997   Add G80 backplane pinout
+29 May 1997   Redo input port info, add protocol for speech board
+              and add Player1/2 switch info for Space Fury.
+ 3 May 1997   Add phrases from Zektor, correct port 0xfc info
+ 1 May 1997   Add sound register defns for Eliminator
+ 3 Apr 1997   Add version number, and a bunch of new info on
+	      switches and sound.
+ 4 Apr 1997   Add some sample vector data
+22 Apr 1997   Add screen coordinate and scaling info
+
+
+

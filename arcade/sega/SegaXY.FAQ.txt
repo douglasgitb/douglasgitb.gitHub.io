@@ -1,0 +1,849 @@
+                      ======================== 
+                      The Sega/Gremlin X-Y FAQ
+          
+                             version 1.13
+
+                      written by: Mark Jenison
+                      ========================
+                       
+
+1. Introduction
+2. The X-Y Convert-a-Game system
+   a. The System
+      1. CPU boards
+      2. X-Y timing and control boards
+      3. Sound boards
+      4. EPROM boards
+   b. Monitor: Electrohome G08 X-Y
+   c. Power supply
+3. Games
+   a. Space Fury
+   b. Star Trek
+   c. Eliminator
+      1. Upright
+      2. Cocktail
+      3. 4-player
+   d. Tac/Scan
+   e. Zektor
+4. Repair tips
+   a. CPU
+   b. EPROM
+   c. X-Y boards
+   d. Sound boards
+   e. Controls
+   f. General Tips
+   g. Power supply
+   h. Monitor
+5. Conversions
+   a. Game-to-Game
+   b. Related documents
+6. Contributors
+7. Document History
+
+
+***************
+1. Introduction
+***************
+
+This document discusses the Sega/Gremlin X-Y Convert-a-Games system. 
+These games were color X-Y games released in the early 1980's.  The 
+Convert-a-Game system was designed so an operator could convert from one game
+to another by simply changing artwork, control panels, game cages (and possibly
+the orientation of the monitor) without having to re-wire the cabinet.  All of
+this could be done from the front of the cabinet. 
+
+The following were included in the series of Sega color X-Y Convert-a-Games
+(listed in order of release):
+
+- Eliminator 
+- Space Fury
+- Zektor 
+- Tac/Scan
+- Star Trek
+
+
+*******************************************
+2. The Sega color X-Y Convert-a-Game System
+*******************************************
+
+==========
+The System
+==========
+
+This is just a brief overview.  The system is explained in much more detail in
+the Star Trek manual.
+
+Each Sega color X-Y Convert-a-Game system consisted of what is known as the
+G-80 system.  It contains the following elements:
+
+* CPU board
+* Sound board(s)
+* X-Y timing and control boards
+* 48K EPROM board 
+
+These boards are about the size of a piece of paper (approximately 8 1/2"x11")
+with one narrow end having a 86 (2x43) edge pins.  All these boards fit into a
+card cage, with the individual boards plugging into a interconnect board at
+the bottom of the cage.  The interconnect board allows the boards to be
+plugged into the slots in any order or position.  This board is supplied with
+voltage from the power supply, and is how all boards are powered.  It also
+acts as a bus to get information between cards.
+
+----------
+CPU boards
+----------
+
+The CPU board itself is generic between the X-Y games.  However, each game had
+a special chip (protection chip/slapstick) at U21 and an EPROM at U25 that was
+specific for that game (the only exception here may be Space Fury and
+Eliminator).  Some games have the same special chip as other games.
+
+These are a list of which special chips go with which games:
+
+Special chip (U21)	EPROM (U25)	Game
+---------------------------------------------------------------------
+315-0076		1390		Eliminator 4-player
+315-0076		1711		Tac/Scan
+315-0064		969		Space Fury
+315-0064               	1873		Star Trek
+315-0063                959             Space Odyssey (version 1 & 2) (non X-Y)
+315-0070      		969		Eliminator
+315-0070 		969		Eliminator cocktail
+315-0070               	1346		005 (non X-Y)
+315-0062      		829		Astro Blaster (non X-Y)
+315-0082      		1778		Monster Bash (non X-Y)
+315-0082		1611		Zektor
+
+If anyone sees any discrepancies, or can fill in some more the above data,
+please send e-mail to: jenison@enteract.com
+ 
+-----------------------------
+X-Y timing and control boards
+-----------------------------
+
+These boards, often referred to as the X-Y pair, are the boards that control
+the monitor.  They are generic between all X-Y games.  These boards are hooked
+together via ribbon cable.  
+
+------------
+Sound boards
+------------
+
+There is some compatibility of sound boards between games.  There may or may
+not be necessary EPROM swaps on some of these boards.
+
+Sound board		Games used with
+---------------------------------------
+Speech board		Space Fury
+                        Star Trek
+                        Zektor
+Battle Star/Space Fury	Space Fury
+Meatball/Eliminator	Eliminator
+			Eliminator 4-player
+			Zektor
+Universal		Tac/Scan
+			Star Trek
+
+
+Meatball and Eliminator sound boards are apparently the same.  Sega changed 
+the name of this sound board during production of the game for some reason.  
+Zektor`s sound board (800-3249) is the same as Eliminators (800-3174) except
+for these minor differences:
+
+Ref Des         ELIMINATOR      ZEKTOR
+R5              10K             4.7K
+R9              33K             12K
+R71             270K            100K
+R79             2 MEG           unused
+R122            220K            390K
+R132            220K            100K
+C9              0.01uF          0.0047uF
+C46             0.022uF         0.047uF
+
+Also, there is a large socket on the Eliminator sound board which is supposed
+to be populated with a SOUND AY-3-8912 chip.  This chip must be present to
+hear all of the sounds for Zektor.  Without it, Zektor will be missing these
+four sounds: ping, rotating rings, city flyby, and zizzers.  Eliminator,
+however, does not make use of this chip, so Eliminator will sound just fine
+without this socket populated.  The Battlestar sound board doesn't need this
+chip either in order to play all of the Space Fury sounds.
+
+Speech boards have very little circuitry on them, so don't get worried if you
+pickup a set and see that the speech board is barely populated. I have seen
+several speech board sets whose EPROM numbers are not continuous.  For
+example, Space Fury's speech board has EPROMs 970-972, and 808.  The 808 is a
+2716, while the others are 2732s.  I would speculate that the 808's were from
+Astro Blaster.  However, these leftover EPROMS ARE NECESSARY for the speech
+boards to run correctly.  Star Trek uses a Zektor EPROM for its speech board.  
+
+------------
+EPROM boards
+------------
+
+The EPROM boards are generic between games; any set of Sega/Gremlin X-Y EPROMs
+can be put into any G-80 EPROM board.
+
+============================
+Monitor: Electrohome G08 X-Y
+============================
+
+The Sega X-Y Convert-a-Games came with the infamous Electrohome G08 X-Y
+monitor.  This monitor is infamous for its unreliability, and are probably
+the main reason why these games were junked by operators so quickly.  It is
+commonly joked about on the net that if you operate one of these monitors, you
+should also be the owner of a fire extinguisher (and keep it handy).
+
+There were several versions of the GO8, but the version most commonly found in
+Sega XY games is the G08-003.  See the G08 FAQ for more detail about this monitor.
+
+============
+Power supply
+============
+
+The power supply that came with the Sega X-Y games provided an audio amp and
+the following necessary voltages: +5VDC, -5VDC, +12VDC (for sound), -12VDC
+(for video), and 3VAC.
+
+According to John Robertson, "the original use of the 3VAC was a valid power
+detect reset.  If the power switch was quickly cycled on/off/on this would
+force a reset.  [This] Was a way around the fast cycle reset free credits that
+some games gave."
+
+********
+3. Games
+********
+
+The following list of games are known produced Sega Gremlin X-Y games.
+
+I have a flyer which promotes Sega X-Y Convert-a-Games that shows another X-Y
+game called Battle Star.  It appears from the screen shots on the flyer that it
+is NOT a prototype game for Eliminator or Space Fury (the flyer shows a
+Space Fury being converted to a Battle Star).  Even though Space Fury has a
+Battle star sound board, it is possible Battle Star itself was never released.
+
+The Battle Star game that appears in the flyer is playing an unfinished game
+called "Space Disc Launcher, according to Tom Haagen.
+
+Most games came in the common Sega Convert-a-cabinet, which was used as the
+cabinet for many of Sega's games (Congo Bongo, Zaxxon, etc).  Any game where
+"dedicated" cabinet is mentioned means that it also came in a cabinet other
+than the Convert-a-cabinet.
+
+==========
+Space Fury 
+==========
+
+Space Fury came in both upright and dedicated cocktail.  Space Fury is somewhat
+similar in game play to Asteroids or Space Duel.  Enemies objects fly onto the
+screen, "assembling" themselves into floating objects.  The characteristic of
+the objects depend on how many of the pieces are allowed to assemble.  Between
+waves, you are allowed to add an "attachment" on your ship, giving you
+additional fire power, possibly in additional directions.
+
+This game is probably most famous for it's one-eyed alien which taunts you
+throughout the game.  "So, a creature for my amusement.  Prepare for battle!"
+
+1 - Speech board (EPROM 970-972, 808)
+2 - CPU board (EPROM 969, special chip 315-0064)
+3 - X-Y timing board
+4 - X-Y control board
+5 - Sound board "Battle star" or "Space Fury"
+6 - EPROM board (EPROM numbers 960-968)
+
+Controls consisted of 6 buttons: left, right, thrust, fire, 1P, 2P.
+
+=========
+Star Trek
+=========
+
+Star Trek came in an upright Convert-a-cabinet, dedicated cockpit version,
+dedicated upright, and was also available as a Sega X-Y Convert-a-Game kit,
+which was popular for Asteroids cabinets.  There is a switch setting for two
+sets of controls, so it may be possible to play out of a cocktail, but I've
+never seen one.
+
+If you have a Star Trek board cage which has an edge connector instead of the
+mate-n-lock harness, that means you have a Star Trek Kit cage.  A mapping
+finger board was supplied for game conversion (instead of the kit containing a
+harness with about 6 miscellanous mate-n-lock connectors like the real
+converta-cabinet has).
+
+Star Trek was a popular Asteroids conversion.  Replace the vector monitor and
+insert a finger board and re-wire the control panel, and most of the existing
+Asteroids harness could be re-used.  However, the edge card connection pinouts
+for Star Trek kits doesn't match any game (as far as I can tell), so a
+mapping finger board was required for the Star Trek conversion kits.
+
+If you have a Star Trek cage where the harness goes right to mate-n-lock
+connectors that are mounted on the cage itself, then you've got one out of
+a Star Trek cockpit.
+
+The screen consists of 3 sections: 1) a display for score, available shields,
+photons, and warp time, 2) a radar view of your ship, surrounding enemies and
+star bases, and  3) a cockpit view from your ship; sort of like Battlezone in
+outer space.  The object of the game is to defeat the enemies in the sector.
+There are star bases which you can dock with to get more shields, photons, and
+warp time.  There are bonus rounds which you must survive where NOMAD places
+mines, and you must successfully navigate through the mine field them and
+attempt to destroy NOMAD.
+
+Of all games manuals, Star Trek's manual is probably the most helpful when it
+comes to explaining the Sega X-Y G-80 system.  It also has a good deal of
+monitor information, and explains the theory of the G-80 system in detail.
+Of all the Sega X-Y manuals, try to get a copy of this one. 
+
+1 - CPU board (EPROM 1873, chip 315-0064)
+2 - X-Y timing board
+3 - X-Y control board
+4 - Sound board "Universal" 
+5 - Speech board (EPROM 1871-1872, 1607)
+6 - EPROM board (EPROM numbers 1848-1870)
+
+Controls consisted of an encoder wheel, thrust, fire, photon, warp, 1P,
+and 2P (unless it was a sitdown).
+
+==========
+Eliminator
+==========
+
+There are many different forms of Eliminator, but the premise is the same:
+
+There is a large spherical rock known as the Eliminator.  It floats around the
+screen and sends out ships to destroy you.  You attempt to destroy enemy ships
+by forcing them into the Eliminator with your energy bolts.  The Eliminator
+can only be destroyed by firing a shot down a narrow tunnel to its core.
+I believe the Eliminator was coined as "The Death Bagel" by John Grigsby.
+
+Although the games between the three different types are the same, different
+versions, thus different EPROMs, were necessary to handle the displaying of
+scores for each of the different cabinets.  The attract modes for each game
+stayed the same as the upright version, which is kind of odd for the 4-player
+version since the attract mode implies only two players.
+
+-------
+Upright
+-------
+
+The 2-player upright of Eliminator came in the standard Convert-a-cabinet.
+
+There are two ROM versions of this game.  The first version of the game had
+small, fast, and accurate firing drones, and there was a "counter" for each player
+that counted down from 30.  The counter would decrement went certain things happened,
+but there seems to be no rhyme or reason to it.
+
+The second versions is the most commonly found version.  In this version, the drones
+are more colorful, larger, and dumb.  There are no counters, just a score for each
+player.
+
+There are two different versions of the artwork also.  I suspect one was released
+with each version of the software.  
+
+The Eliminator upright board configuration is described here.  It consists of:
+
+1 - CPU board (EPROM 969, chip 315-0070)
+2 - X-Y timing board
+3 - X-Y control board
+4 - Sound board "Meatball" or "Eliminator"
+5 - EPROM board (version 1 EPROM numbers 1158-1170; version 2 EPROM numbers 1333-1345)
+
+Controls consisted of 10 buttons: left1, right1, thrust1, fire1, left2, right2,
+                                  thrust2, fire2, 1P, 2P
+
+--------
+Cocktail
+--------
+
+The Eliminator cocktail is very different in hardware than it's upright or
+4-player counterpart.  For starters, the game has a different power supply
+configuration.  It has what appears to be a basic switching power supply for
+the +5VDC, a transformer, and a small board which looks to rectify some of the
+other voltages, and also a small audio amplification board.
+
+Also, the monitor in the cocktail has a different chassis than the ones used
+in the uprights and 4-player model.  The chassis is more compact, even though
+all the parts appears to be the same (they are just mounted more closely to
+the tube neck.)
+
+The Eliminator cocktail board configuration is described here.  It consists of:
+
+1 - CPU board (EPROM 969, chip 315-0070)
+2 - X-Y timing board
+3 - X-Y control board
+4 - Sound board "Meatball" or "Eliminator"
+5 - EPROM board (EPROM numbers 1200-1212)
+
+Two control panels containing left, right, thrust, fire, with the 1P, 2P
+buttons on the cabinet.
+
+
+--------
+4-player
+--------
+
+The four-player version of Eliminator is a tall table top game where you stand
+at each side of the monitor at a player control panel.  It was not really a
+Convert-a-Game per se, since no other games could be played out of its
+cabinet and the game couldn't be played out of any other Sega/Gremlin cabinet
+(without some serious hacking).
+
+The four-player consists of basically the same set up of the regular upright
+except that it has an external I/O board to handle all the additional coin and
+control inputs.
+
+1 - CPU board (EPROM 1390, chip 315-0076)
+2 - X-Y timing board
+3 - X-Y control board
+4 - Sound board "Meatball" or "Eliminator"
+5 - EPROM board (EPROM numbers 1347-1360)
+
+Controls consisted of 4 control panels, each with: left, right, thrust, fire
+
+No player start buttons were needed.  There was a coin door for each side of
+the cabinet under each player's controls.  The coin mechs have lockout coils,
+so as soon as a player put a coin in, the coin door would lock out attempts to
+coin up that side again, and the player would use that side.  A countdown from
+10 would begin, and other players could coin in before it reached 0.  Once it
+reached zero, players could not join, and any remaining attempts to coin in
+would be locked out.  The players then try to "eliminate" each other.  The
+last remaining player must then face the Eliminator (and its drones) alone.
+
+There are two versions of the Eliminator 4-player flyers.  One shows a cabinet
+where the control panel color indicates which color ship the player controls.
+There is also a typo in the description of play text. This flyer also shows a
+"high impact promotional canopy" (which is optional) on the back.
+
+There is also another version of the flyer which shows each of the control
+panels being black, with only the color of the buttons and a number to
+indicate which control panel controls which color ship.  It also lacks the
+promotional canopy on the back of the flyer, and the game description text does
+not have the typo on it.
+
+The only 4-player Eliminators that I've seen have each of the four control
+panels the same color as the players ship.
+
+========
+Tac/Scan
+========
+
+Tac/Scan was a kit for the Convert-a-cabinet, and also came in a cocktail
+according to the flyer.
+
+You pilot a fleet of seven ships which all move and fire in unison.
+
+First scenario:  Shoot down enemies while you pilot your fleet through waves
+of descending enemies.  The game play for this scenario is unique; your
+ships are at the bottom of the screen, firing up, but you can rotate the ships
+to fire left and right, and pilot your fleet past enemies.  The formation of
+your ships also changes.  Additional ships appear occasionally which you can
+catch and add to your fleet.
+
+Second scenario:  Basically the same thing, except in a 3-D perspective from
+behind your fleet.  Additional ships are also awarded here.
+
+Third scenario:  Pilot your fleet down a warp tunnel.  Avoid hitting the sides
+or you will lose ships.  
+
+1 - CPU board (EPROM 1711, chip 315-0076)
+2 - X-Y timing board
+3 - X-Y control board
+4 - Sound board "Universal"
+5 - EPROM board (EPROM numbers 1670-1688, 1709-1710)
+
+Controls consisted of: encoder wheel, fire, add ship, 1P, 2P.
+
+======
+Zektor
+======
+
+This is the rarest of the Sega XY games.  The game was basically "lost" until
+April of 1997, when Paul Frazee discovered a partial boardset and posted it for
+sale (not knowing the attention that this one boardset would draw).  He then
+held an auction for the partial boardset, and it was purchased by me (and a few
+other unnamed contributors - thanks guys) for $400!  Turns out I had found the
+CPU EPROM chip in a warehouse raid about a year prior to the auction, which
+made the boardset complete.  In early January of 1998, Lee Bender found a
+complete Zektor cabinet.
+
+"Dangerous Dann" Frank <dangerd@primenet.com> contributed this description of
+Zektor, taken from the manual, flyer, and his personal experience with the
+game.
+
+-------
+Object: To "recapture Eight cosmic cities that have been seized by an evil
+cadre of alien Robots."  Each city is named in an Alphabetical progression
+(and increasing difficulty) in this order...
+
+Ascella
+Baitos
+Centaurus
+Denebala
+Eridonus 
+Faltar
+Graffas
+...???
+
+Each city's liberation begins with a different "Robot" image and
+voice confronting the player...  The robot ruling "Faltar" was a male with a
+deep voice stating "I rule Faltar now, you will have to fight for it".
+There are also female robots such as the one who declares "I have conquered
+Eridonus. You will not take it from me"
+        
+To liberate each city, the player must defeat three 'waves' of enemy
+FIGHTERS' and ROBOPROBES that are often 'shielded' (in red) and who fire
+lethal zig-zag shaped 'Zizzers' at the player's ship.  Also there are three
+types of MOBOIDS, and their features are as follows...
+
+Green Moboids...  'Spin' player's ship on contact and 'bounce' enemy ships
+Blue Moboids...    'Bounce' all ships
+Red Moboids...       Destroy all 'unshielded' ships (including Player's ship)
+  
+After defeating the three waves of attack, the alien Robot holding
+the city appears within three concentric rings (a la "Star Castle") through
+which a 'Slot shot' can be scored 'neutralizing' the Robot and earning the
+player a Bonus ship.  If you don't make the shot after a period of time, you
+still advance to the next level, but don't get a bonus ship.
+
+Enemies who are shielded must be hit several times to weaken the shields
+before they are destroyed.  
+
+The last boss is the alien from Space Fury.  My own speculation says that they 
+probably planned to have a planet per letter, with Zektor being the last.  Must
+have ran out of room :-).
+
+The game board consists of:
+
+1 - CPU board (EPROM 1611, chip 315-0082)
+2 - X-Y timing board
+3 - X-Y control board
+4 - Sound board - "Meatball" or "Eliminator" (modified as mentioned above)
+5 - Speech board (EPROM numbers 1607-1610)
+6 - EPROM board (EPROM numbers 1586-1606)
+
+Controls consisted of: encoder wheel, 1P, 2P, thrust, fire
+
+
+**************
+4. Repair Tips
+**************
+
+So you have a set of what you believe to be a complete Sega/Gremlin X-Y game.
+You have your working monitor and a good power supply.  You power up the game,
+hoping to see the games attract mode come up on the screen, but instead you
+get a garbled mess of graphics, a still picture, or no picture at all.
+
+Welcome to the wonderful world of Sega/Gremlin X-Y games.
+
+Well, don't fret.  These marvels of technology were designed to be modular so
+that they could be debugged easily.  It helps to have a known *working* set to
+swap parts around to figure it where the problem lies, but if you aren't so
+fortunate, here's some debugging advice.
+
+==========
+CPU boards
+==========
+
+The led on a good CPU board will flash out information that can be used to
+debug other problems; check the manual for these codes.
+
+If the game isn't coming up, press the test plunger.  If you get a halt light,
+try replacing the 2114 RAMs and replacing the Z80 CPU and see if that fixes it.
+If the halt light flashes repeatedly, the first 1k of EPROMs is either bad or
+making a bad connection.  If you get nothing, the CPU is bad (or the LED is bad).
+
+By the way, bad sound boards and speech boards can cause symptoms that might
+make you suspect the CPU or X-Y boards are bad.  Do not test CPU and
+X-Y boards with untested sound and speech boards.  You don't need these boards
+in the card cage for the game to run, so unplug them and set them
+aside until you've tested the rest of the boards.
+
+============
+EPROM boards
+============
+
+First things first; reseat each EPROM on the EPROM board and check all pins
+are getting a good connection.  It doesn't help to try and debug a program
+that cannot run.  I've seen many different versions of sockets used on these
+EPROM boards, and in most cases if the EPROM board doesn't seem to be working,
+it's because of the sockets.  There are three or four devices on the board
+itself, so replacing them all wouldn't be a problem if it came down to that.
+
+==========
+X-Y boards
+==========
+
+Listen carefully to your monitor when you are working with these boards.  If
+you power up and you here the deflection circuitry working (what is known as
+"deflection chatter"), then it's likely the control board is bad, and your
+timing board is probably ok.  If you hear nothing, it could be either board.
+
+Press the test plunger on the CPU and it should flash out the location of
+any bad 2114 RAMs on the timing board.  Keep doing this until all bad 2114
+RAMs have been located and replaced.  B.G. Micro, Inc (1-800-276-2206) is a
+cheap source of 2114 RAM chips.
+
+I get a lot of cases where people aren't sure if they have the video 
+connectors on correctly.  The "wiring diagram" on the boardset or in the 
+cabinet can confuse the issues, so just ignore it and follow the guides 
+below for hooking up the video.   
+
+This guide assumes that the boardset is in it's normal position,
+where the power plug is on the right and you are looking into the cage.
+
+XY-control board (controls RGB; "remember...COntrol means COlor")
+This is the board of the XY pair which has the highest connector 
+of the two.
+
+Numbered counting down from the top.  This connector normally has
+3 different color wires.
+
+1 ----- Green
+2 Empty
+3 ----- Red
+4 ----- Blue
+
+XY-timing board (controls the XY position)
+This is the board of the XY pair which has the lowest connector
+of the two.
+
+Numbered counting down from the top.  This connector normally has
+2 wires of the same color, and a bare wire for the Shield wire.  
+
+1 ----- Y
+2 ----- Shield
+3 Empty
+4 ----- X
+
+Hopefully this makes things more clear.  Remember, for the top connector,
+pin 2 from the top should be empty, and for the bottom connector, pin 2
+from the BOTTOM should be empty.
+
+============
+Sound boards
+============
+
+On sound boards, the ground (shield) is the bottom pin, and the upper pin is
+the sound.  Be especially careful when hooking up the speech boards, as in
+some instances, the first pin is cut off, causing you to connect audio out
+directly to ground; not good.
+
+Each game has a sound test.  This test can be deceiving.  The loss
+of sound(s) does not necessarily mean the sound board is bad.  A bad CPU board,
+bad speech board, bad amplifier, or screwing up the connectors will also cause
+a loss of sounds.  Sound problems are the least simple to debug.  A common
+problem with these boards is that most sounds will work, but some will be
+missing.  The Star Trek manual mentions the exact circuits to look at for it's
+sounds, which is nice if you have a bad Universal sound board.  For the Space
+Fury sound board, usually a sound failure is due to a 4.7uf capacitor in the
+sound's circuit going bad.  Replace these first.  If that's not it, have a few
+spare TL082 op-amps handy.  The same with the Eliminator sound board.
+
+Maybe your set works, but is missing speech.  Fortunately, this board has a lot
+of socketed devices (this board always appears to be missing a lot of devices,
+but it's not).  David Shuman suggests:  "...try replacing the socketed
+TL082 op-amp on the speech board.  This swap brought back the speech on one of
+my Space Fury sets.  The other problem chip is the 8035 CPU-- this is another
+part that, when it dies, knocks out the speech.  Both the TL082 and 8035 are
+available cheap from B.G. Micro.".  Speech boards can be nasty, as bad ones
+can create symptoms like multiplier errors and no sound at all, which might
+make you think the sound board is bad.
+
+Universal Sounds board are a major pain to debug.  The Star Trek manual
+specifies which circuits control which specific sounds, so get a copy.
+I don't remember if the Tac/Scan manual does the same.  
+
+Is your Sega XY game too loud, and you can't turn it down low enough?  Check
+right behind the volume pot.  There should be a resistor, maybe under some
+shrink wrap, that will be inline with one of the inputs to the pot.  Changing
+the resistor to a lower value (or removing it altogether) will allow you to
+reduce the volume of your game to bearable levels.
+
+========
+Controls
+========
+
+The control that causes the most problems is the spinner.  If your ship is
+spinning erratically in Star Trek, or the numbers are changing drastically
+during test mode, there is a problem.  I'd say ninety percent of the time
+the problem is caused by loose connections somewhere along the line, typically
+in the Mat-n-lock connector.  The female pins tend to lose tension and open
+up, so use a small flathead screwdriver and push them closed again so they
+make a tight connection.
+
+============
+General Tips
+============
+
+Double check your connections; these games have a bunch of connectors that are
+not keyed, so it is easy to put one on backwards by mistake (making it
+especially easy to fry sound and video boards). 
+
+The self test is useful, but not flawless, however.  All self tests may pass,
+but you could STILL have a screwed up game.  The only thing I could suggest is
+the EPROMs, since the self test only tests a certain portion of the EPROMs,
+not all EPROM data.  I have an Eliminator 4-player that originally passed the
+EPROM test, but the player 2 and 4 ships were still screwed up.  The problem
+turned out to be a corroded socket where an EPROM was not making a good
+connection.
+
+============
+Power supply
+============
+
+Sega/Gremlin power supplies are not the most reliable.  If you have a dead one,
+you have a few choices:  you can repair it, or replace it.
+
+In most cases repairing these power supplies is straight forward.  If you open
+it up, you'll see there's really not much to it.  The voltage regulators are
+all mounted to the heat sink and can be easily replaced.  If you are missing
+a voltage, the schematics for the power supply are very straight forward, and
+it usually means simply replacing the voltage regulator in that circuit.  I
+also recommend replacing the connector and connector pins for any burnt
+connectors, and resoldering the header pins on the power supply PCB.
+
+If you decide to modernize your game and put in a switching power supply, there
+are a few things to consider:
+
+1) The Sega/Gremlin power supply has a built in audio amplifier.  You'll need
+   to provide your own if you replace it.  I've had good luck with using the
+   Bally Midway Dual audio amps as a replacement, but any audio amp should do.
+2) You'll need a 3VAC supply for the power-on reset.  I've heard that using
+   +5VDC as a substitution may work, but your milliage may vary.
+3) You'll need +5VDC, -5VDC, +12VDC, and -12VDC.  John Robertson says you
+   may be able to get by with substituting -5VDC for the -12VDC for the video,
+   but you'll need to adjust your picture.
+
+Or if you wish, you can use a switching power to supply the more common
+voltages and keep the old power supply in there and use it for the things that
+may still work (audio amp, 3VAC, -12VDC).  Just make sure if you do this to
+make the grounds common between the two power supplies.
+
+=======
+Monitor
+=======
+
+Reference the G08 FAQ for more detailed information about the monitor.
+
+Let me just say this; in general, the entire system set up (monitor, power
+supply, board sets) is flakey.  The monitor has been redesigned several times,
+the power supply has surface wire hacks and cut traces, and the board sets
+aren't very reliable.  If you get a working set up and running, hold onto it
+like gold, but prepare parts in advance for any problems that may transpire.
+
+Good luck!
+
+
+**************
+5. Conversions
+**************
+
+============
+Game-to-Game
+============
+
+So you have a Sega/Gremlin X-Y game, and have been looking to add to your
+collection of Sega/Gremlin X-Y games.  However, these games in general are
+hard to come by, and if you *do* find another, it is likely it won't be
+working.  Well, if you can gather just a FEW pieces, you may be able to
+convert your game "X" to game "Y".
+
+In order to convert game "X" to game "Y", the *minimum* you would need
+would be:
+
+1) Game "X"; a working game "X" would be best, but it's possible that the
+   parts you swap in for "Y" will get you a working set.
+
+2) The audio board for the game.  Space Fury, Star Trek and Zektor
+   would need the additional speech board as well.
+
+3) A copy of game "Y"'s EPROMs.  This includes the CPU EPROM U25 for game "Y",
+   and maybe speech board EPROMS as well.
+
+4) The special protection chip at location U21 for game "Y".  This will be the
+   hardest to come by.  If you are lucky, your game "X" will already have this.
+
+5) Controls.  Star Trek control panel could run Tac/Scan, Eliminator (2 player)
+   can run Space Fury, etc.
+
+For example:  To add Space Fury to your Star Trek (assuming it's in a Sega
+Convert-a-cabinet), you'd need the EPROM data, Battle Star sound board, and a
+spare control panel; a control panel from just about any Convert-a-Game
+(Zaxxon, Congo Bongo, Eliminator) will do.  Swap EPROMs on the EPROM board,
+speech board and CPU board, swap in the sound board and swap control panels
+(assuming you've modified it for Space Fury) and your done!
+
+Probably a lot of the EPROM swapping could even be avoided if someone figured
+out how to strap the game for a larger EPROM, and use some banking tricks so
+that you'd only need to swap sound boards and control panels.
+
+Rick Schieve wrote up an article talking about how he added 4-player Eliminator
+to his Tac/Scan set up: http://ubd3.vdospk.com/nostalgia/text/elim.txt
+
+David Fish figured out the security scheme used by Sega.  He broke the code
+and rewrote all the EPROM data to be non-security chip specific.  Clay Cowgill
+took this one step further and made a kit for Sega XY games so that all the
+data for all five games fit on ONE EPROM, and made a daughter board kit so that
+all five games could be played without switch special chips or EPROM data (only
+sound boards need to be swapped).
+
+
+=================
+Related Documents
+=================
+
+1. Wells Garner to Sega X-Y hack -- David Shuman
+   http://www.spies.com/arcade/conversion/SegaToAtariXYConv
+
+2. The Sega Vector Game Page -- Ian Boffin
+   http://www.gamearchive.com/video/manufacturer/sega-gremlin/vector/
+
+3. The Sega Multigame Hack -- Clay Cowgill
+   http://www.multigame.com/sega_mul.html
+
+4. The Electrohome G08 FAQ -- Mark Jenison
+   http://www.enteract.com/~jenison/mars/faq/G08.FAQ
+
+***************
+6. Contributors
+***************
+
+Mark Jenison
+David Shuman 
+Rick Schieve
+Kevin Klopp 
+John Grigsby 
+Dangerous Dann
+Kerry Stillinger
+Dwaine Hurta
+Zonn Moore 
+William La Covara
+John Robertson 
+Ian Boffin
+Paul Tonizzo
+Al Kossow
+Clay Cowgill
+Tom Haagen
+
+*******************
+7. Document History
+*******************
+
+Version 1.0: Initial Release
+Version 1.1: Added information about Zektor
+Version 1.2: Added more to Sound board section
+             Added information about Battlestar
+Version 1.3: Added more speech board information
+Version 1.4: Added Eliminator cocktail information
+Version 1.5: More added to repair section
+Version 1.6: Zektor section updated
+Version 1.7: Updated sound board section - Zektor sounds figured out
+Version 1.8: Zektor section updated
+             Conversion section updated
+             Added new Eliminator 4-player flyer information
+Version 1.9: Corrected information about cocktails and monitors
+             Updated some links and some e-mail addresses
+Version 1.10: Add more power supply tips
+Version 1.11: Added Sound board and Controls repair tips sections
+Version 1.12: Added guide for putting on connectors for XY-pair
+Version 1.13: Added info about Eliminator ROM versions
+              Removed monitor info and provided reference to FAQ
+              Removed e-mail addresses altogether

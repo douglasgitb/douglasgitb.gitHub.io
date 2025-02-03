@@ -1,0 +1,46 @@
+**************************
+* Cinematronics RAM Test *
+*       J4 Output        *
+**************************
+Programmed By: Timothy Shiels
+
+Outerworld Arcade
+www.outerworldarcade.com
+
+Copyright 2017 Timothy Shiels
+
+V1.0: 12/09/2017
+
+J4 Pinout:
+
+       Top of CCPU
+*-------------------------*
+| 02 04 06 08 10 12 14 16 |
+| 01 03 05 07 09 11 13 15 |
+*-------------------------*
+
+Use logic probe or RAM test PCB to read results.
+
+RAM Test Results:
+
+J4-01	+5v
+J4-08	GND
+
+J4-12	N14 Result
+		0  Active-high	Bad
+		1  Active-low  	Good
+J4-14	M14 Result
+		0  Active-high	Bad
+		1  Active-low  	Good
+J4-16	L14 Result
+		0  Active-high	Bad
+		1  Active-low  	Good
+
+J4-11	Unused - Active Low
+J4-13	Ability to Run RAM Tests
+		0  Active-high	Can't Run RAM Tests
+		1  Active-low  	Can Run RAM Tests
+J4-15	Running Full Test of RAM
+		0  Active-high	Not Doing Full Test
+		1  Active-low  	Doing Full Test		
+

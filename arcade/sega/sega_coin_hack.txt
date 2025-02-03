@@ -1,0 +1,93 @@
+
++---------------------------------------------------------------------------.
+Title            : Sega Coin Hack                                           :
+Date             : 17-November-1997                                         :
+Author           : Paul Tonizzo                                             :
++---------------------------------------------------------------------------.
+
++----------.
+ Background \ 
++------------`--------------------------------------------------------------.
+                                                                            :
+The 3VAC om Sega G80 boards is only required to keep the Z-80 from          :
+reseting. The whole idea Sega had behind this was that they found a quick   :
+power on/off would sometimes credit the game. The 3VAC guaranteed a reset   :
+CPU on powerdown/up.                                                        :
+                                                                            :
+The really annoying thing is that the coining circuit requires a 1ms pulse  :
+to actually coin the game. This was another of Sega's ideas to reduce the   :
+chances of someone tripping a free credit any other way than with a coin.   :
+                                                                            :
+Here's a simple 555 timer circuit that will let you use a regular           :
+Jamma-type low signal to coin the game (you can also use the service        :
+switch but this doesn't help for 4-player Eliminator), to defeat the        :
+idiotic coining mechanism on Sega's G-80 games.                             :
+                                                                            :
++---------------------------------------------------------------------------.
+
++----------.
+ Disclaimer \ 
++------------`--------------------------------------------------------------.
+                                                                            :
+Read these instructions fully before starting!!! Do not attempt this        :
+procedure unless you are comfortable with using a soldering iron and this   :
+type of work.  You should also be taking anti-static precautions when       :
+handling any of the components including the board. Lastly, I cannot be     :
+held responsible if your board blows up so proceed at your own risk!        :
+                                                                            :
++---------------------------------------------------------------------------.
+
++---------.
+ Materials \ 
++-----------`---------------------------------------------------------------.
+                                                                            :
+	Qty	Description                                                 :
+	---	-----------                                                 :
+	1	555 timer chip (8-pin)                                      :
+	1	8-pin socket (for the 555)                                  :
+	2	0.1 uF capacitor (use mylar caps)                           :
+	2	1 Meg ohm resistor                                          :
+	4	1N4001 diodes (4-player Eliminator only)                    :
+                                                                            :
+	You should be able to use a really small piece of perfboard to      :
+	make this. (1-1/2" square would do it.)                             :
+                                                                            :
++---------------------------------------------------------------------------.
+
++---------.
+ Procedure \ 
++-----------`---------------------------------------------------------------.
+                                                                            :
+The basics are that the circuit uses a 555 timer to generate a clock pulse. :
+The pulse itself is low for ~1ms and then high for ~1ms and repeats itself  :
+(1ms was the optimal value for the pulse width to get the coin to trigger). :
+The circuit itself is not at all unlike the rapid fire circuit for some     :
+Midway games (but it has been greatly simplified).                          :
+                                                                            :
+Wire it up as follows:                                                      :
+    - pins 4 and 8 of socket to +5v                                         :
+    - one side of first 1M resistor to +5v, other side to pin 7 of socket   :
+    - one side of second 1M resistor to pin 7 of socket, other side to      :
+      pins 2 and 6 of socket                                                :
+    - one side of first 0.1 uF cap to pin 5 of socket, other side to pin 1  :
+      of socket                                                             :
+    - one side of second 0.1 uF cap to pin 2 of socket, other side to pin 1 :
+      of socket                                                             :
+    - pin 1 of socket to pin 5 on G-80 CPU board                            :
+    - pin 3 of socket to pin 6 on G-80 CPU board                            :
+                                                                            :
+For all games except 4-player Eliminator:                                   :
+    - pin 1 of socket goes to coin or a coining button of some kind         :
+                                                                            :
+For 4-player Eliminator:                                                    :
+    - you also require 4 general purpose diodes (1N4001 will do)            :
+    - take all 4 diodes and the ends closest to the black line should all   :
+      be tied together (this is the end the electrons CAN flow to). These   :
+      ends then get attached to pin 1 of the socket                         :
+    - the other ends of the four diodes should go to the coining buttons    :
+      (one for each player)                                                 :
+    - the coining buttons also go to pins 2-5 on the i/o board.             :
+    - the only other thing that changes on the i/o board is that the board  :
+      outputs that go to pins 5 and 6 on the G-80 CPU board should be cut.  :
+                                                                            :
++---------------------------------------------------------------------------.

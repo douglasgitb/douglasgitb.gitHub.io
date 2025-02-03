@@ -1,0 +1,81 @@
+Sega security chip hacking and cracking
+compiled March 12, 2002
+
+
+=======================================================================
+The Infamous U21 Security Chip
+------------------------------
+
+There are a total of six different security chips produced - 31562, 31563,
+31564, 31570, 31576, and 31582.  They all work the same conceptually, but
+have slightly different implementations.  In general, this chip interrupts
+the Z80 memory write instruction LD ($XXYY),A  (opcode $32) and changes the
+value of YY before writing to memory.
+
+There are four different algorithms for changing YY.  These algorithms seem
+like they could be implemented by simply reordering the bits in YY and
+possibly inverting one of them.  The four algorithms can be implemented in
+C using the following code.  Note that one algorithm doesn't do anything - 
+the output matches the input. 'x' represents the output, 'i' represents the
+input.
+
+
+
+
+From David Fish:
+---------------
+I did it about five years ago but really don't remember exactly
+how I cracked it, you know, that 'Ah-Ha' moment. I DO remember spending
+ALOT of time with my logic analyzer and z-80 emulator tho'. It's
+funny, after patching and releasing the SC-Free Space Fury I mentioned
+the crack to Zonn. Within a day or so he sent me a file of tables that
+contained all the security chips remapped addresses. He took one of the
+chips, had a computer pump all possible inputs in it, recorded the
+outputs then crunched the data to form the tables he sent to me.
+
+
+
+From Zonn Moore:
+---------------
+I knew David Fish was working on the Sega crack so I sent him an email asking
+where he was, and what was going on.  It seems he had broken the Space Fury
+security and was in the processes of patching the ROMs so that the game could be
+played without the security chip. (Great idea!  A multi-game platform was not
+going to happen without this!)
+
+I had already contrived a plan to attack these parts, so even though David had
+already figured out what was going on, I was still interested in seeing if my
+brute force approach would work, so I wired up a PC prototype card with an 8255
+and connected the I/O lines of the 8255 to the address and data lines of the
+security chip -- using a ZIF socket.
+
+I then wrote software that just started a brute force search of everything I
+could think of.  Every time I had a *hit* (when something different came out of
+the security chip that went in), the program stopped and I wrote something new
+that explored this difference.
+
+It took me two evenings to solder up the prototype board and debug it, then
+another evening to play with software. I was expecting many weeks of head
+scratching, but the Sega security was pretty simple (the same data in always
+mapped to the same data out, there were no Linear Feedback Shift Registers
+(LFSRs) that are common in encryption, so things got simple fast.
+
+I kinda had it figured out (but not completely, I was still thinking it was more
+complicated than it was) and wrote David with some of my security chip dumps. 
+
+His explanation of what he found made me realize I was making things too
+complicated, so I simplified my software dump, and ran the program on all the
+Sega Security chips.  I was lucky enough to have access to all the chips.  Many
+of the Sega games share security chips, for instance Zektor and Monster Bash
+used the same chip, and I was also close to Gaymond Lee at that time, who can
+get his hands on about anything Arcade related, so I had access to all the
+Security chips.
+
+I sent him back the data, I don't know if it helped him or not with the rest of
+the ROM patches, but it was fun and a bit nostalgic "cracking" the game.  It was
+like the good ol' TRS-80 days when it was more fun figuring out ways to copy
+"copy protected" games than it was playing the games!
+
+-Zonn
+
+

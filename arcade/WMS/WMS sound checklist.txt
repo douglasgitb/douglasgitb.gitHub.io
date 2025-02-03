@@ -1,0 +1,80 @@
+0. Need volume control or jumper from IOJ4p1 to IOJ4p2.
+
+0.1 Make sure all jumpers (W1 thru W15) are correct and working depending on speech, ROM chip type 16v32, Blaster.
+
+0.2 Check the board for damage (burned areas, nicks, physical damage, etc.).
+
+2. The next thing you should do is to replace all the header connectors at IOJ1, IOJ2, IOJ3, and IOJ4. I can't tell you how many times I've been burned by a bad connection. It's best to eliminate any possibility of a bad connection from the start. Yes I know, it's tedious. But it will save you a ton of headaches in the future. Verify by testing continuity from pin to next component (follow trace).
+
+0.3 Install known good CPU and ROM - use ROM3,4,5,8
+
+0.4 Set DIP 2 to off for testing. Reset after repair: On for speech
+0.5 for speech boards: install W1 or jumper across pins 3 and 4 of header.
+
+
+1. Check the fuses at F1 and F2. Both of these are 4 Amp, slow blow fuses.
+
+4. Check the test leads (TP1 through TP4). Ensure you are getting the correct voltages for each. If not, check the power connector and ensure you are getting the correct voltage at the connector. TP1 = +12v, TP2 = -12v, TP3 = GND, TP4 = +5v. You can supply -5v to the -12v input if using a switcher.
+
+3. If you are getting zero sound from the board, chances are the TDA-2002 Audio Amplifier at IC1 is bad. Turn the power on to the board, turn the volume way up, then rub your finger over the leads of the audio amp. If you hear a humming sound coming from the speaker when you touch the leads, chances are the TDA-2002 is good. If you don't hear anything, swap the audio amp out with a new one.
+
+5. If you press the diagnostic switch (SW1) and you hear some game sounds coming through the speaker, you know the following components are working:
+
+IC9 - 6808/6802 CPU
+IC10 - 6821 PIA
+IC11 - 6810 RAM
+IC12 - 2516/2716/2532
+
+---- If you don't hear any game sounds coming through the speaker, chances are the 6821 Peripheral Interface Adapter (PIA) IC is bad. These are notorious for going bad. One of the first things I check on a sound board is the 6821. First thing (if the chip is socketed), pull the IC out of the socket and ensure none of the legs are broken. Unless the chip looks new, clean all the legs carefully and re-insert the chip back in the socket firmly, ensuring each leg is fully inserted (eg. not bent, broken, missing, etc.). If you still don't get any game sounds, swap out the 6821 with a known working chip. If no socket is installed, do yourself a favor and install a 40-pin socket on the board. This will save you time in the future if the PIA goes out again.
+
+---- If no control from MPU, check buffer (test button would still trigger sound board to produce sounds internally). If you still do not hear any sounds, check/replace the 4050 buffer at IC5. I've never seen one of these ICs socketed from the factory, so if you are going to replace it, put in a fresh socket.
+
+---- I like to ensure that the 2516, 2716, or 2532 (depending on the game) at IC12 has the correct sound file burned to it and that the chip is in good working condition. It's easier to get your hands on a 2532 chip than the 2516 or 2716. But if you are working on a Defender/Stargate, you may not have a choice.
+
+---- Next check the 6810 RAM chip at IC11. It's highly doubtful that this chip is socketed, but you know the drill by now, go ahead and socket it. If you do not have the datasheet for the component you are working on, get the datasheet. There is no way you will be able to confirm if the component is within specifications if you have nothing to compare it to.
+
+
+Fork in t/s whether CPU is running or not, after pressing plunger or grounding trigger pins (timing???)
+Insert when to employ the NOP ROM.
+
+
+
+The backbox mounted sound board used in late system6 and system7 games
+also has a sound select switch in the form of a small two position DIP
+switch. This switch is used to determine if an attached speech board
+is to be used (note the sound board must be jumpered correctly to use
+a speech board, this information is covered in the CPU/Sound Board
+Jumper section, but basically sound board jumper W1 must be removed to
+use the speech board).
+
+For games that use speech (Gorgar, Firepower, Blackout, Alien Poker,
+Black Knight, Jungle Lord and Pharoah), this two position DIP switch
+much be set correctly, and jumper W1 removed from the sound board.
+These games use a speech board, which attached to the sound board with
+a ribbon cable.
+
+Switch 2 of the DIP switch must be set ON for speech (OFF would be for
+sound only, no speech). Switch 1 of the DIP switch, depending on the
+game, can be set on or off, depending if synthesized or musical notes
+are desired (only applicable if DIP switch 2 is set OFF, for sound
+only). For games with speech, I generally set the DIP switches so the
+top switch #2 ON, and the bottom switch #1 OFF (for true Synthesized
+sounds, and not those dumb "bongs"). But verify with the game manual
+if this correct for the game title in question.
+
+--
+
+24. check for clock coming out of CPU on pin 37 - if not, test/replace crystal (scope pin 38/39 @ 3.58MHz - weak signal, hook up probe ground clip)
+25. push diagnostic switch and watch for activity on R/W pin 34 of CPU
+26. if no R/W then CPU is not getting instruction from ROM - check enable lines pin 20 and 21 of ROM
+ - if no pin 20, check 7442 @ IC2
+ - if no pin 21, check W10 and 7400 @ IC3
+27. Check for activity on data and address lines of CPU. If some are missing try pulling PIA and RAM.
+28. Compare address lines and data lines to ROM. Missing ROM p18 check 14069 @ IC7, otherwise socket or W2/W5 jumper missing.
+
+-- Distortion and no speech? Check for BUS ϕ2 going into/through IC3 to make BUS ϕ2•VMA
+Diagnostic button does not trigger sounds on Sinistar
+
+21. Test Q4 voltages (-0.69, -0.71)
+22. Make sure C28 is not damaged
+23. Test for data activity going into DAC p5-12 (after pushing test button)

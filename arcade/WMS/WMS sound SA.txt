@@ -1,0 +1,51 @@
+6802/8 NOP fixture
+
+opcode 0x01
+
+Wire 4.7K resistor between pin 9 (D0) and pin 24 (+5v)
+Wire together pins 10,11,12,13,14,15,16 and 17 (GND)
+
+CPU while under NOP
+pin 37 (E): 896.0KHz
+pin 9 (A0): 217.4KHz
+pin 10 (A1): 113.6KHz
+pin 11 (A2): 56.18KHz
+pin 12 (A3): 27.01KHz
+pin 13 (A4): 13.97KHz
+pin 14 (A5): 6.983KHz
+pin 15 (A6): 3.496KHz
+pin 16 (A7): 1.748KHz
+pin 17 (A8): 877.2Hz
+pin 18 (A9): 436.7HZ
+pin 19 (A10): 218.3Hz
+pin 20 (A11): 109.9Hz
+pin 22 (A12): 56.64Hz
+pin 23 (A13): 27.32Hz
+pin 24 (A14): 13.51Hz
+pin 25 (A15): 6.757Hz
+
+For SA:
+rising Start/Stop: CPU pin 25
+rising Clock: CPU pin 37
+
+GND: 0000
++5V: 0001
+
+A0: UUUU
+A1: 5555
+A2: CCCC
+A3: 7F7F
+A4: 5H21
+A5: 0AFA
+A6: UPFH
+A7: 52F8
+A8: HC89
+A9: 2H70
+A10: HPP0
+A11: 1293
+A12: HAP7
+A13: 3C96
+A14: 3827
+A15: 755P
+
+

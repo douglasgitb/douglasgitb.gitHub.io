@@ -1,0 +1,81 @@
+{\rtf1\mac\ansicpg10000\cocoartf100
+{\fonttbl\f0\fmodern\fcharset77 CourierNewPS-BoldMT;\f1\fmodern\fcharset77 CourierNewPSMT;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww21540\viewh19220\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b\fs24 \cf0 Title:
+\f1\b0 \
+Pole Position II Pinout\
+\
+
+\f0\b Author:
+\f1\b0 \
+ggdb.com\
+\
+
+\f0\b Article:
+\f1\b0 \
+\
+
+\fs20                                POLE POSITION II\
+                          ==========================\
+                     by: Some Guy I Don't Remember His Name\
+Video board, 30 pins, 15 per side, numbered side is back of board, letters\
+are on component side.  Items in parenthesis aren't listed on schematic:\
+	 1  Ground				A  Ground\
+	 2  +5 volts				B  +5 volts\
+	 3  (ground)				C  (ground)\
+				(keyway)\
+	 4  (ground)				D  (ground)\
+	 5  (ground)				E  (ground)\
+	 6  (ground)				F  (ground)\
+	 7  (ground)				H  (ground)\
+	 8  (ground)				J  (ground)\
+	 9  Red					K  (ground)\
+	10  Green				L  (ground)\
+	11  Composite sync (inverted)		M  (ground)\
+	12  Blue				N  (ground)\
+	13  Video return			P  (ground)\
+	14  + sense				R  (+5 volts)  \
+	15  - sense				S  (ground)\
+CPU board, 44 pins, 22 per side, numbered side is back of board, letters\
+are on component side.  Items in parenthesis aren't listed on schematic:\
+ 1  Ground					A  Ground\
+ 2  +5 volts					B  +5 volts\
+ 3  (ground)					C  (ground)\
+				(keyway)\
+ 4  Ground for shifter				D  Ground (coin door 1)\
+ 5  Ground for brake				E  Ground (utility panel 4)\
+ 6  Brake					F  Gas pedal wiper\
+ 7  Start 0					H  Steering 2 (steering pin 1)\
+ 8  Steering 1 (steering pin 4)			J  Right coin counter 2 (utility panel 6)\
+ 9  Left coin counter 1 (utility panel 7)	K  Test switch (utility panel 5)\
+10  Service switch (utility panel 9)		L  Coin 2 (coin door 2)\
+11  Coin 1 (coin door 3)			M  Start 1\
+12  Shifter					N  (ground)\
+13  (vol. gnd)					P  vol. gnd for gas\
+14  (vol. vcc)					R  vol. vcc for gas\
+15  Sound 2+  					S  (ground)\
+16  Sound 4+					T  Sound 1+\
+17  (ground)					U  Audio ground for channels 1 & 3\
+18  Sound 3+					V  Audio ground for channels 2 & 4\
+19  Sound 1-					W  Sound 4-\
+20  Sound 3-					X  Sound 2-\
+21  + sense					Y  +5 for steering (steering pin 2)\
+22  - sense					Z  Gnd for steering (steering pin 3)\
+For upright game, connect the following on the CPU board:\
+	18 to T and 19 to 20 to strap sound outputs 1 and 3 together\
+	15 to 16 and X to W to strap sound outputs 2 and 4 together\
+	7 to M for automatic game start (a start switch could go here)\
+	5 to 6 to account for lack of brake pedal\
+Audio outputs need to go to an amplifier (won't drive a speaker directly).\
+Gas pedal is a 5K pot.\
+I've never tried doing this before and don't know if you also need\
+power/audio board hookups or not.  If you are using a switching power\
+supply instead (REAL good idea) you will need another way to drive the\
+speakers.  It is also assumed you are trying for an upright cabinet and\
+not a sitdown.  For all I know, you might be trying to make the worlds first\
+COCKTAIL Pole Position---if so, mount a couple fans!!
+\fs24 \
+}

@@ -1,0 +1,11 @@
+Omega Race schematic corrections
+D110 flipped
+PN2 has no pin 17 - should be 7
+gates selecting RAM (PR1 and R1) are lots of wrong
+.01 cap by Batt 101 is CP360
+J/K6 in upper left (with WDOG) is actually K6
+MA5 going into S6-1 is MA15
+dashed chip next to PROM is LS08 at H/G6 pin 12 is _GO_
+DAC B5 goes out thru A8 (not BC8) then A7 then A8
+DAC C5 is as shown
+Z out section - only one R261 (68 ohm). Other (3.9K) is R259
