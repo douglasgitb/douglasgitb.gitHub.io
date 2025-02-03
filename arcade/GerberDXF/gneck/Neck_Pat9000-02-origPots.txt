@@ -1,0 +1,18 @@
+Rimu PCB Export Manufacturing Files Report
+
+File: C:\Users\Dezbaz\Desktop\ALL ARCADE STUFF New\Arcade PCBs\PAT9000\to Doug\Neck_Pat9000-02-origPots.pcb
+Generated: Wednesday, October 16, 2013
+
+Number Format
+------------
+3.4, mm, leading zero suppression
+
+Files Generated:
+Layer Name        	Layer Type        	File Type         	File Name
+----------        	----------        	---------         	---------
+Plated Holes      	Drill             	Excellon          	Neck_Pat9000-02-origPots.drl
+Unplated Holes    	Drill             	Excellon          	Neck_Pat9000-02-origPots.dru
+Bottom            	Outer             	Gerber RS274X     	Neck_Pat9000-02-origPots.g02
+Top Overlay       	Overlay           	Gerber RS274X     	Neck_Pat9000-02-origPots.g03
+Bottom Solder Mask	Solder Mask       	Gerber RS274X     	Neck_Pat9000-02-origPots.g22
+Board Outline     	Board Definition  	Gerber RS274X     	Neck_Pat9000-02-origPots.g26

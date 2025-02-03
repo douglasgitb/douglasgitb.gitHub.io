@@ -1,0 +1,459 @@
+! Asteroids Test Script
+! Douglas Gauck Nov 17 2018
+! version 0.2 = VGEN now working
+! no DIP test yet
+
+   INCLUDE "6502.POD"
+
+SETUP
+
+   POD 6502
+   TRAP ACTIVE FORCE LINE NO		! Intercepts and prevents resets from WDDOG barking
+
+PROGRAM 0
+
+   DPY-ASTEROIDS TEST
+   DPY-+GND WDDIS, PRESS CONT		! the + appends text to previous output
+   STOP					! STOP waits for CONT keypress
+0: LABEL 0
+   DPY-1=RAM 2=ROM 3=SND 4=IO
+   DPY-+ 5=VG 6=ADEC/1
+   IF REG1 = 1 GOTO 1
+   IF REG1 = 2 GOTO 2
+   IF REG1 = 3 GOTO 3
+   IF REG1 = 4 GOTO 4
+   IF REG1 = 5 GOTO 5
+   IF REG1 = 6 GOTO 6
+   IF REG1 = 7 GOTO 7
+   GOTO 0 
+1: LABEL 1 
+   EXECUTE PROGRAM 10			! RAM Test
+   GOTO 0
+2: LABEL 2
+   EXECUTE PROGRAM 20			! ROM Test
+   GOTO 0
+3: LABEL 3
+   EXECUTE PROGRAM 30			! Sound Test
+   GOTO 0
+4: LABEL 4
+   EXECUTE PROGRAM 40			! I/O Test
+   GOTO 0
+5: LABEL 5
+   EXECUTE PROGRAM 50			! Vector Graphics Test
+   GOTO 0
+6: LABEL 6
+   EXECUTE PROGRAM 60			! Address Decoders Test
+   GOTO 0
+7: LABEL 7
+   EXECUTE PROGRAM 70			! DIP switch test
+   GOTO 0
+
+PROGRAM 10   					! RAM test
+
+   DPY-TESTING VECTOR RAM R3//4 M3//4#
+   RAM SHORT @ 4000-43FF			! RAM short is usually thorough enough and faster then RAM long
+   DPY-TESTING VECTOR RAM P3//4 N3//4#
+   RAM SHORT @ 4400-47FF
+   DPY-TESTING PGM RAM E2//L2 D2//M2#
+   RAM SHORT @ 0000-03FF
+   DPY-RAM TESTING COMPLETE
+   DPY-+-PRESS CONT#
+   STOP
+
+
+PROGRAM 20   					!Choose which ROM set is tested
+
+0: LABEL 0
+   DPY-ROM VERSION 1 OR 2 O 4? /1
+   IF REG1 = 1 GOTO 1
+   IF REG1 = 2 GOTO 2
+   IF REG1 = 4 GOTO 4
+   GOTO 0
+
+1: LABEL 1
+   DPY-TESTING V.1 ROM F1-143
+   ROM TEST @ 6800-6FFF SIG 27D8
+   DPY-TESTING V.1 ROM D//E1-144		! / is reserved so double // needed to display /
+   ROM TEST @ 7000-77FF SIG D59B
+   DPY-TESTING V.1 ROM C1-145
+   ROM TEST @ 7800-7FFF SIG E8BD
+   DPY-TESTING V1. VECTOR ROM N//P3-127
+   ROM TEST @ 5000-57FF SIG 984C
+   GOTO F
+
+2: LABEL 2
+   DPY-TESTING V.2 ROM F1-143		! 143 or 145?
+   ROM TEST @ 6800-6FFF SIG 53C9
+   DPY-TESTING V.2 ROM D//E1-144
+   ROM TEST @ 7000-77FF SIG 3D7A
+   DPY-TESTING V.2 ROM C1-145		! 145 or 143?
+   ROM TEST @ 7800-7FFF SIG 232F
+   DPY-TESTING V.2 VECTOR ROM N//P3-127
+   ROM TEST @ 5000-57FF SIG CBED
+   GOTO F
+
+4: LABEL 4
+   DPY-TESTING V.4 ROM C1-143		! 143 or 145?
+   ROM TEST @ 6800-6FFF SIG 3935
+   DPY-TESTING V.4 ROM D//E1-144
+   ROM TEST @ 7000-77FF SIG BD6D
+   DPY-TESTING V.4 ROM F1-145		! 145 or 143?
+   ROM TEST @ 7800-7FFF SIG 232F
+   DPY-TESTING V.2 VECTOR ROM N//P3-127
+   ROM TEST @ 5000-57FF SIG CBED
+   GOTO F
+
+F: LABEL F
+   DPY-ROM TEST COMPLETE
+   STOP
+
+
+PROGRAM 30					! Sounds test
+
+   REG1 = 40					! Register 1 is keyboard 
+   DPY-EXPLOSION SND. CONT=NEXT SND%1#
+0: LABEL 0
+   WRITE @ 3600 = FF				! Memory address taken right from the Atari Asteroids memory map sheet 1B
+   IF REG1 = 25 GOTO 1			! Loop until CONT
+   GOTO 0
+1: LABEL 1
+   REG1 = 40
+   DPY-THUMP SND. CONT=NEXT SND%1#
+2: LABEL 2
+   WRITE @ 3A00 = 1F				! Write 1F: the 1 is D4 for volume, the F is D3-D0 for frequency 0001 1111 = 1F
+   IF REG1 = 25 GOTO 3
+   GOTO 2
+3: LABEL 3
+   REG1 = 40
+   DPY-SAUCER SND. CONT=NEXT
+   DPY-+ SND%1#
+4: LABEL 4
+   WRITE @ 3C00 = 80				! Write 80: that is D7 per memory map 1000 0000 = 80
+   IF REG1 = 25 GOTO 5
+   GOTO 4
+5: LABEL 5
+   REG1 = 40
+   DPY-SAUCER FIRE SND.CONT=NEXT
+   DPY-+ SND%1#
+6: LABEL 6
+   WRITE @ 3C01 = 80
+   IF REG1 = 25 GOTO 7
+   GOTO 6
+7: LABEL 7
+   REG1 = 40
+   DPY-SHIP THRUST SND. CONT=
+   DPY-+NEXT SND%1#
+8: LABEL 8
+   WRITE @ 3C03 = 80
+   IF REG1 = 25 GOTO 9
+   GOTO 8
+9: LABEL 9
+   REG1 = 40
+   DPY-SHIP FIRE SND. CONT=NEXT
+   DPY-+ SND%1#
+A: LABEL A
+   WRITE @ 3C04 = 80
+   IF REG1 = 25 GOTO B
+   GOTO A
+B: LABEL B
+   REG1 = 40
+   DPY-LIFE SND. CONT=NEXT SND%1#
+C: LABEL C
+   WRITE @ 3C05 = 80
+   IF REG1 = 25 GOTO F
+   GOTO C
+F: LABEL F
+   DPY-SND TESTS DONE. PRESS CONT%1#
+   STOP
+
+PROGRAM 40				! I/O test
+   DPY-COMING SOON
+   STOP
+
+PROGRAM 50				! Vector Graphics test
+
+   DPY-GROUND WDDIS FOR STABLE DISPLAY.
+
+   WRITE @ 4000 = FF			! These are vector drawing commands in 01-00 order, i.e. they are executed A3 FF 02 00 97 FF...
+   WRITE @ 4001 = A3			! See Atari TM-179
+   WRITE @ 4002 = 00
+   WRITE @ 4003 = 02
+   WRITE @ 4004 = FF
+   WRITE @ 4005 = 97
+   WRITE @ 4006 = 00
+   WRITE @ 4007 = 90
+   WRITE @ 4008 = 00
+   WRITE @ 4009 = A2
+   WRITE @ 400A = 00
+   WRITE @ 400B = 00
+   WRITE @ 400C = 00
+   WRITE @ 400D = 90
+   WRITE @ 400E = FF
+   WRITE @ 400F = 33
+   WRITE @ 4010 = 00
+   WRITE @ 4011 = E0
+
+   DPY-#CONT=EXIT 
+   WRITE @ 3000 = 00			! Poke DMAGO to make VSM execute drawing commands
+  
+0: LABEL 0
+   DPY-+%1
+   IF REG1 = 25 GOTO 2		! Exit upon CONT key
+   GOTO 0
+2: LABEL 2
+   WRITE @ 4011 = B0			! Change final instruction from JMP to HALT to stop VSM
+
+
+PROGRAM 60				! Address Decoders test
+
+   SYNC ADDRESS			! as opposed to sync data
+   DPY-PLACE PROBE ON CHIP-PIN#
+   STOP
+   REG8 = 1				! REG8 is global. 1 to read, 0 to write
+   REGB = 40				! REGB is how many pulses we are expecting
+
+DPY-ZPAGE E4-12#			! RAM enable line for memory addresses 0000-01FF
+   STOP
+   REG9 = 0000			! REG9 is global. Holds address to be read from or written to
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-VMEM E4-10#
+   STOP
+   REG9 = 4000
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-PMEM E4-9#
+   STOP
+   REG9 = 0200
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-OPTS E4-6#
+   STOP
+   REGA = 0				! REGA is global. Holds value to be written
+   REG9 = 2800
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-SINP1 E4-5#
+   STOP
+   REG9 = 2400
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-SINP0 E4-4#
+   STOP
+   REG9 = 2000
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-VRAM L3-12#
+   STOP
+   REG9 = 5800			! Should be 4000 but 5800 activates pins 9 and 12
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-VROM L3-10#
+   STOP
+   REG9 = 5000
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-PROM2 L3-7#
+   STOP
+   REG9 = 1800			! Should be 7800 but 1800 activtes pin 7
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-PROM1 L3-6#
+   STOP
+   REG9 = 7000
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-PROM0 L3-5#
+   STOP
+   REG9 = 6800
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-NOISERST L6-9#
+   STOP
+   REG9 = 3E00
+   REG8 = 0
+   REGA = FF
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-AUDIO L6-7#
+   STOP
+   REG9 = 3C00
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-THUMP L6-6#
+   STOP
+   REG9 = 3A00
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-DMACNT L6-5#
+   STOP
+   REG9 = 3800
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-EXPLODE L6-4#
+   STOP
+   REG9 = 3600
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-WDCLR L6-3#
+   STOP
+   REG9 = 3400
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-OUT L6-2#
+   STOP
+   REG9 = 3200
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+DPY-DMAGO L6-1#
+   STOP
+   REG9 = 3000
+   DPY-PROBING...#
+   EXECUTE PROGRAM 65
+
+DPY-TEST COMPLETE#
+   STOP
+
+
+PROGRAM 62   				! Collect data for PGM 60
+
+   DPY-ENTER ADDR, PROBE /1
+   REG8 = REG1
+   READ PROBE
+   REG1 = 40
+1: LABEL 1
+   WRITE @ REG8 = FF
+   DEC REG1
+   IF REG1 > 0 GOTO 1
+   READ PROBE
+   REG0 = REG0 AND 7F
+   IF REG0 = 40 GOTO 2
+   DPY-INCORRECT WAS $0 NOT 16
+   GOTO 3
+2: LABEL 2
+   DPY-COUNT CORRECT $0
+3: LABEL 3
+
+
+PROGRAM 63
+
+   DPY-ENTER HEX ADDRESS /1
+   READ @ REG1
+   DPY ADDR $1 HAS $E
+   STOP
+
+
+PROGRAM 65				! Subroutine to count pulses at probe
+
+   READ PROBE				! Data from probe tip goes into REG0
+   REG1 = REGB				! REG1 is local copy of count
+1: LABEL 1
+   IF REG8 = 0 GOTO 2			! Branch according to R/W
+   READ @ REG9
+   GOTO 3
+2: LABEL 2
+   WRITE @ REG9 = REGA
+3: LABEL 3
+   DEC REG1
+   IF REG1 > 0 GOTO 1
+   READ PROBE
+AUX ADDRESS $9  DATA $0		! output to buffer for debugging
+   REG0 = REG0 AND 7F			! Apply bit mask and accumulate pulses 
+   IF REG0 = REGB GOTO 4
+   DPY-+CNT BAD.
+   GOTO 5
+4: LABEL 4
+   DPY-+ OK. 
+5: LABEL 5
+   DPY-+COUNT @0=@B#
+   STOP
+
+
+PROGRAM 70				! DIP switch test (needs work)
+
+READ 2803
+DPY $E
+READ 2802
+DPY +$E
+READ 2801
+DPY +$E
+READ 2800
+DPY +$E
+STOP
+
+PROGRAM 71				! DIP switch test (needs work)
+
+   REGF = 27FF
+
+SWITCHLOOP:   
+   INC REGF   
+   INC REG2   
+   READ @REGF   
+AUX REGF = @F
+   IF REGE AND 1 >0 GOTO SWR6OFF	! ? Need to step from 2800 - 2803 and read X3 each time
+   GOTO SWR6ON
+
+NEXTSW:      
+   IF REGE AND 2 >0 GOTO SWR6OFF	! ?
+   GOTO SWR6ON
+
+ADDTEST:      
+   IF REGF >2803 GOTO CONT		! ?
+   GOTO SWITCHLOOP
+   
+SWR6ON:   
+   DPY-#   
+   DPY-R6 NUMBER $2 ON   
+   STOP   
+   GOTO NEXTSW
+   
+SWR6OFF:   
+   DPY-#   
+   DPY-R6 NUMBER $2 OFF   
+   STOP   
+   GOTO NEXTSW
+   
+CONT:   
+   DPY-#   
+   DPY-DIP TEST COMPLETE  
+   STOP 
+
+PROGRAM 80   				! Unknown, but it does affect Vector Graphics.
+
+   SYNC DATA
+2: LABEL 2
+   DPY-CONT START.
+   DPY-+#
+   STOP
+   READ PROBE
+   EXECUTE PROGRAM 85
+   READ PROBE
+   REG0 = REG0 SHR SHR SHR SHR
+   REG0 = REG0 SHR SHR SHR SHR
+   REG0 = REG0 AND FFFF
+   DPY-SIG=$0
+   DPY-+#
+   STOP
+   GOTO 2
+
+PROGRAM 85				! Subroutine used by PGM 80
+
+   WRITE @ 4000 = FF
+   WRITE @ 4001 = A3
+   WRITE @ 4002 = 00
+   WRITE @ 4003 = 02
+   WRITE @ 4004 = FF
+   WRITE @ 4005 = 97
+   WRITE @ 4006 = 00
+   WRITE @ 4007 = 90
+   WRITE @ 4008 = 00
+   WRITE @ 4009 = A2
+   WRITE @ 400A = 00
+   WRITE @ 400B = 00
+   WRITE @ 400C = 00
+   WRITE @ 400D = 90
+   WRITE @ 400E = FF
+   WRITE @ 400F = 33
+   WRITE @ 4010 = 00
+   WRITE @ 4011 = E0
+   WRITE @ 3000 = 00

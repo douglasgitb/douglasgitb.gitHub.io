@@ -1,0 +1,11 @@
+1	2	DIP20		DIP 1	DIP 2	
+2	1	ZIF		ZIF	
+3	60	diode 3.5		D13a	D6a	D2	D11a	D17	D7b	D14a	D12	D13b	D16b	
+					D5b	D5a	D9	D5	D18a	D19	D2b	D7a	D14	D6	
+					D9b	D18b	D11b	D9a	D20b	D10a	D10b	D16	D18	D15b	
+					D15a	D11	D17a	D7	D16a	D3	D17b	D10	D8	D1	
+					D4a	D12a	D8b	D1b	D19b	D1a	D20	D8a	D14b	D3a	
+					D3b	D6b	D19a	D12b	D20a	D4	D4b	D15	D2a	D13	
+4	1	res		R1	
+5	1	smLED		L1	
+6	1	switch		SW1	
