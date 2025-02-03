@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:iphoto="urn:iphoto:property" xmlns:iweb="http://www.apple.com/iweb" version="2.0">
+  <channel>
+    <title>Coco(a)    </title>
+    <link>file://localhost/Volumes/:/Library/WebServer/Documents/cocoa/Site/Photos.html</link>
+    <description>We adopted Coca from an animal rescue in Baltimore. Here’s what they said:
+
+This gorgeous six year old is full of youthful charm! She leaps in and out of the car with ease, and makes it up the stairs in just a couple of bounds. Her distinctive markings and perky ear only bring more interest to this very sweet and gentle dog.
+
+So far Coco enjoys trying to squeeze herself into the cat bed, following people around the house, and getting lots of pats on her chest from those people. A twenty minute walk seemed just enough for her, but that could be because she was recently spayed. So far she shows a lot of interest in our cat, but is called off easily and does not chase. She also shows very little interest in our dog, but seems like she could definitely co-habitate easily with either species. 
+
+So far, we agree!</description>
+    <item>
+      <title>looking for a home</title>
+      <link>file://localhost/Volumes/:/Library/WebServer/Documents/cocoa/Site/Photos.html#0</link>
+      <guid isPermaLink="false">a3686100-ff27-4ed9-8c51-c98fc983c2d3</guid>
+      <enclosure url="file://localhost/Volumes/:/Library/WebServer/Documents/cocoa/Site/Photos_files/Media/MD215.10841723-1-x/MD215.10841723-1-x.jpg" length="0" type="image/jpeg"/>
+      <iphoto:thumbnail>file://localhost/Volumes/:/Library/WebServer/Documents/cocoa/Site/Photos_files/Media/MD215.10841723-1-x/thumb.jpg</iphoto:thumbnail>
+      <iweb:micro>file://localhost/Volumes/:/Library/WebServer/Documents/cocoa/Site/Photos_files/Media/MD215.10841723-1-x/micro.jpg</iweb:micro>
+      <iweb:richTitle>&lt;div style=&quot;padding: 0px; &quot; class=&quot;image_cluster_layout_style_default_External_248_32&quot;&gt;&lt;div class=&quot;image_cluster_layout_style_default&quot;&gt;&lt;p style=&quot;padding-bottom: 0pt; padding-top: 0pt; &quot; class=&quot;Caption&quot;&gt;looking for a home&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</iweb:richTitle>
+    </item>
+    <item>
+      <title>“maybe over there?”</title>
+      <link>file://localhost/Volumes/:/Library/WebServer/Documents/cocoa/Site/Photos.html#1</link>
+      <guid isPermaLink="false">3a7ba4ef-3897-4533-b684-678f63ed57fb</guid>
+      <enclosure url="file://localhost/Volumes/:/Library/WebServer/Documents/cocoa/Site/Photos_files/Media/MD215.10841723-3-x/MD215.10841723-3-x.jpg" length="0" type="image/jpeg"/>
+      <iphoto:thumbnail>file://localhost/Volumes/:/Library/WebServer/Documents/cocoa/Site/Photos_files/Media/MD215.10841723-3-x/thumb.jpg</iphoto:thumbnail>
+      <iweb:micro>file://localhost/Volumes/:/Library/WebServer/Documents/cocoa/Site/Photos_files/Media/MD215.10841723-3-x/micro.jpg</iweb:micro>
+      <iweb:richTitle>&lt;div style=&quot;padding: 0px; &quot; class=&quot;image_cluster_layout_style_default_External_248_32&quot;&gt;&lt;div class=&quot;image_cluster_layout_style_default&quot;&gt;&lt;p style=&quot;padding-bottom: 0pt; padding-top: 0pt; &quot; class=&quot;Caption&quot;&gt;&amp;#x201C;maybe over there?&amp;#x201D;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</iweb:richTitle>
+    </item>
+    <item>
+      <title>after sleeping on it...</title>
+      <link>file://localhost/Volumes/:/Library/WebServer/Documents/cocoa/Site/Photos.html#2</link>
+      <guid isPermaLink="false">e2c2a1d7-5c2e-40d5-b66b-4457718eb17b</guid>
+      <enclosure url="file://localhost/Volumes/:/Library/WebServer/Documents/cocoa/Site/Photos_files/Media/MD215.10841723-2-x/MD215.10841723-2-x.jpg" length="0" type="image/jpeg"/>
+      <iphoto:thumbnail>file://localhost/Volumes/:/Library/WebServer/Documents/cocoa/Site/Photos_files/Media/MD215.10841723-2-x/thumb.jpg</iphoto:thumbnail>
+      <iweb:micro>file://localhost/Volumes/:/Library/WebServer/Documents/cocoa/Site/Photos_files/Media/MD215.10841723-2-x/micro.jpg</iweb:micro>
+      <iweb:richTitle>&lt;div style=&quot;padding: 0px; &quot; class=&quot;image_cluster_layout_style_default_External_248_32&quot;&gt;&lt;div class=&quot;image_cluster_layout_style_default&quot;&gt;&lt;p style=&quot;padding-bottom: 0pt; padding-top: 0pt; &quot; class=&quot;Caption&quot;&gt;after sleeping on it...&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</iweb:richTitle>
+    </item>
+    <item>
+      <title>she’s part of our crew</title>
+      <link>file://localhost/Volumes/:/Library/WebServer/Documents/cocoa/Site/Photos.html#3</link>
+      <guid isPermaLink="false">b21edf45-806a-4269-87e0-b1b8cfb17a5d</guid>
+      <enclosure url="file://localhost/Volumes/:/Library/WebServer/Documents/cocoa/Site/Photos_files/Media/IMG_9504/IMG_9504.jpg" length="0" type="image/jpeg"/>
+      <iphoto:thumbnail>file://localhost/Volumes/:/Library/WebServer/Documents/cocoa/Site/Photos_files/Media/IMG_9504/thumb.jpg</iphoto:thumbnail>
+      <iweb:micro>file://localhost/Volumes/:/Library/WebServer/Documents/cocoa/Site/Photos_files/Media/IMG_9504/micro.jpg</iweb:micro>
+      <iweb:richTitle>&lt;div style=&quot;padding: 0px; &quot; class=&quot;image_cluster_layout_style_default_External_248_32&quot;&gt;&lt;div class=&quot;image_cluster_layout_style_default&quot;&gt;&lt;p style=&quot;padding-bottom: 0pt; padding-top: 0pt; &quot; class=&quot;Caption&quot;&gt;she&amp;#x2019;s part of our crew&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</iweb:richTitle>
+    </item>
+  </channel>
+</rss>
