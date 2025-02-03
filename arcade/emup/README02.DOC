@@ -1,0 +1,458 @@
+                        Software diskette #2
+                     -----------------------------
+1.Programmer Files :
+  PALTEST.EXE : PLD vertor test.
+  ICTEST.EXE
+  DS5000.EXE
+  PA7024.EXE
+  PA7128.EXE
+  PA7140.EXE
+  5AC324.EXE
+  7C33X.EXE
+  7C361.EXE
+  MAX.EXE
+  PIC16.EXE
+  PIC17.EXE
+  PLS105.EXE
+  ST62.EXE
+  Z86E08.EXE
+  COP800.EXE
+  EPC.EXE
+  17P10X.EXE
+  LS52X.EXE
+  BPPGM1.EXE
+
+2.REVISION of programmer software :
+   Hardware Revision on  :
+                       VERSION 1 : 1st version hardware.4/15/1990.
+                                   current limit resistor from 22 ohms
+                                   to 10 ohms.
+                       VERSION 2 : 2nd version hardware.12/1/1990.
+                                   Add GND control for PIN 30 to solve
+                                   40 PIN word-wide EPROM problom.
+
+ PALTEST.EXE
+        V3.03 : 1st released version for PLD vertor test.
+        V3.04 : 2/8/91, Correct the problem that the characters(P and H)
+                        can't be typed while executes "LOAD File" function.
+                        Enhance the program to process the clock.
+                        Improve the "LOOP TEST" function.
+        V3.05 : 4/1/91, Update load file.
+        V3.06 : 7/1/91, Number of Vector line has been enhanced up to
+                        1500.
+        V3.07 : 8/27/91,Revise the testing method.
+        V3.08 : 10/1/91,Revise the testing method.
+        V3.12 : 1/15/92,Add PALTEST Adaptor.
+        V3.15 : 2/25/92,Revise the testing method.
+        V3.17 : 3/11/92,Revise the testing method.
+        V3.07 : 4/1/92, From 4/1/92 this program is also good for
+                        ALL-03A modules.
+        V3.19 : 5/26/92,Add the display of color screen.
+                        Modify the I/O change function.
+        V3.20 : 7/1/92, Extend the harddisk driver to Z for load file.
+        V3.30 : 7/10/92,Add select function of Mfr. and Type.
+                        Modify the testing function of vectors.
+        V3.32 : 10/1/92,Revise the testing method of LATTICE 16V8.
+                        add AMD AmPALCE 016V8HD-15,
+                        CYPRESS  CY7C344, CY7C361.
+                        add 4 different IC packages: 8 pin, 14 pin,
+                        16 pin, 18 pin for selection.
+        V3.33 : 12/28/92,Modify screen display.
+                        Modify batch file function.
+        V3.34 : 1/29/93, Modify the status display.
+        V3.35 : 3/9/93, Modify operation of the function key.
+                        Modify the don't care state of 20 pin chips.
+        V3.36 : 4/2/93, Increase the file number of load file function
+                        to 1200.
+        V3.37 : 8/13/93, modify testing method.
+        V3.38 : 9/12/93, add INTEL  iPLD22V10.
+        V3.40 : 2/23/94, add ICT  PA7024, PA7128.
+                         modify programming algo. on CYPRESS
+                         7C330/331/332/335.
+        V3.41 : 5/13/94, add ATMEL  ATV750B, ATV22V10B,
+                             AMD  PALLV16V8Z, PALLV16V8, PALLV20V10.
+                         modify loop test function.
+        V3.42 : 9/16/94, add ATMEL  ATF16V8B/B2/BQ/BQL, ATF20V8B/B2/BQ/BQL,
+                         ATF22V8B/B2/BQ/BQL, ATV750B/B2/BQ/BQL,
+                         modify F1, Home, End keys to operate with load
+                         function.
+        V3.43 : 12/23/94, modify screen display.
+        V3.44 : 3/15/95, modify load file function.
+        V3.45 : 9/21/95. add CYPRESS  PALCE20V8, PAL22VP10CF/G,
+                                      PAL22V10CF/G, PALC22V10D;
+                             LATTICE  isPGAL22V10, isPGDS22, isPGDS14.
+
+
+ ICTEST.EXE
+        V2.00 : First release version.
+                This software is available on 10/10/1989.
+                IC that its GROUND is on PIN 20 of TEST-SOCKET can be
+                tested only.
+        V2.01 : Spent too much time in Search function, now the
+                proble is solved.
+        V3.00 : new version for ALL-03.1990/4/15
+        V3.03 : 1/1/91.
+        V3.04 : 2/8/91, Correct the problem that the characters (P and
+                H) can't be typed while executes "LOAD File" function.
+                Improve testing function DRAM44256 in the ICTEST.EXE
+                file.
+        V3.05 : 4/1/91, Update load file.
+        V3.06 : 7/1/91, Revision of text on the screen.
+        V3.07 : 8/27/91,Improve testing function CMOS4060 and DRAM in
+                        the ICTEST.EXE file.
+        V3.09 : 11/7/91,Revise the key codes for <INS> and <DEL>.
+        V3.11 : 1/15/92,Add 2114/5114,QS8888,P4C187.
+        V3.12 : 4/1/92, Improve the "LOOP TEST" function.
+                        From 4/1/92 this program is also good for
+                        ALL-03A modules.
+        V3.17 : 5/26/92,Add the display of color screen.
+                        Modify the I/O change function.
+        V3.18 : 7/1/92, Extend the harddisk driver to Z for load file.
+        V3.19 : 10/1/92,Enhance the inspection capability of Display
+                        Card.
+        V3.20 : modify the testing method.
+        V3.21 : 12/28/92,Modify the screen display.
+                        Add TTL74LS123/597,
+                        DRAM  4461, SRAM  2147, 2149, 628128.
+                        Modify testing method of 74190 and 4416.
+                        Modify batch file function.
+        V3.22 : 1/29/93, Modify search function.
+        V3.23 : 3/9/93, 62256: modify testing function.
+        V3.24 : 4/2/93, Modify testing method of 1M SRAM.
+                        Increase the file number of load file function
+                        to 1200.
+        V3.26 : 8/13/93, modify testing method.
+        V3.27 : 9/12/93, expand test range to 4M SRAM.
+        V3.28 :10/13/93, modifty DRAM testing method.
+        V3.29 :10/19/93, modify accessing method.
+        V3.31 : 3/11/94, modify read function & version update.
+        V3.33 : 9/16/94, add DRAM  44100, 414000.
+                         modify F1, Home, End keys to operate with load
+                         function.
+        V3.34 : 10/17/94, modify memory buffer.
+        V3.35 : 11/11/94, modify TTL file.
+        V3.36 : 12/23/94, modify screen display.
+        V3.37 : 3/15/95, modify load file function.
+        V3.43 : 5/9/96, add CYPRESS  CY199.
+
+
+  DS5000.EXE
+        V3.00 : 10/1/92,1st released version.
+                        DALLAS DS50008,DS50032.
+        V3.02 :12/29/92,Modify screen display.
+        V3.04 : 4/2/93, Increase the file number of load file function
+                        to 1200.
+                        Modify save file function.
+        V3.06 : 7/14/93, add '/BW' function.
+        V3.07 : 9/14/93, version update and modify HEX code.
+        V3.08 : 3/11/94, version update.
+        V3.09 : 9/16/94, modify F1 key to operate with select function.
+        V3.10 : 12/23/94, modify screen display.
+        V3.11 : 3/15/95, modify programming algo.
+        V3.12 : 7/3/96, enhance programming algo.
+
+
+  PA7024.EXE
+        V3.00 : 7/23/93, first version.
+        V3.01 : 8/17/93, modify address location.
+        V3.02 : 9/16/93, modify programming algo.
+        V3.03 : 1/20/94, modify programming algo.
+        V3.04 : 3/8/94, version update.
+        V3.08 : 9/16/94, version update.
+        V3.09 : 12/23/94, modify screen display.
+        V3.10 : 3/15/95, version update.
+
+
+  PA7128.EXE
+        V3.00 : 10/22/93, 1st released version.
+        V3.02 : 1/20/94, modify programming algo.
+        V3.03 : 3/8/94, version update.
+        V3.04 : 5/13/94, modify programming algo.
+        V3.06 : 9/16/94, version update.
+        V3.07 : 12/23/94, modify screen display.
+        V3.08 : 2/20/95, modify programming algo.
+        V3.09 : 3/15/95, version update.
+        V3.10 : 5/9/95, version update.
+
+
+  PA7140.EXE
+        V3.00 : 10/29/93, 1st released version.
+        V3.02 : 12/27/93, modify programming algo.
+        V3.03 : 1/20/94, modify programming algo.
+        V3.04 : 3/8/94, version update.
+        V3.06 : 9/16/94, version update.
+        V3.07 : 12/23/94, modify screen display.
+        V3.08 : 3/15/95, version update.
+
+
+  5AC324.EXE
+        V3.00 : 7/1/92, 1st released version.
+                        INTEL 5AC324
+        V3.01 : 10/1/92,Revision of text on the screen.
+        V3.02 : 12/30/92,Modify screen display.
+                        Modify programming voltage.
+        V3.03 : 4/2/93, Modify batch file function.
+                        Modify manufacturer YDC as ADRITE.
+                        Increase the file number of load file function
+                        to 1200.
+                        Modify quit screen.
+        V3.04 : 7/23/93, add '/BW' function and modify programming algo.
+        V3.05 : 9/15/93, modify save function.
+        V3.06 : 1/4/94, modify programming algo.
+        V3.07 : 9/16/94, modify load file function with F1, Home, End keys.
+        V3.08 : 12/27/94, modify screen display and programming algo.
+        V3.09 : 3/16/95, version update.
+
+
+  7C33X.EXE
+        V3.00 : 7/1/92, 1st released version.
+        V3.02 : 10/1/92.
+        V3.03 : 12/29/92,Modify screen display.
+                         Modify batch file function.
+        V3.04 : 1/29/93, Modify I/O address fetch of FILE.DAT
+        V3.05 : 4/2/93,  Increase the file number of load file function
+                         to 1200.
+                         Modify manufacturer YDC as ADRITE.
+                         Modify manufacturer SIGNETICS as PHILIPS.
+        V3.06 : 6/29/93, modify screen display.
+        V3.07 : 3/11/94, version update.
+        V3.08 : 9/16/94, modify F1, Home, End keys to operate with load
+                         function.
+        V3.09 : 12/23/94, modify screen display.
+        V3.10 : 3/15/95, version update.
+        V3.11 : 12/20/95, add CYPRESS  CY7C335
+
+  7C361.EXE
+        V3.00 : 10/1/92, 1st released version.
+                         CYPRESS CY7C361.
+        V3.01 : 12/29/92,Modify screen display.
+                         Modify batch file.
+        V3.02 : 1/29/93, Modify I/O address fetch of FILE.DAT
+        V3.03 : 4/2/93,  Increase file number of the load file function
+                         to 1200.
+                         Modify manufacturer YDC as ADRITE.
+                         Modify manufacturer SIGNETICS as PHILIPS.
+        V3.04 : 6/29/93, modify screen display.
+        V3.05 : 3/11/94, version update.
+        V3.06 : 9/16/94, modify F1, Home, End keys to operate with load
+                         function.
+        V3.07 : 12/23/94, modify screen display.
+        V3.08 : 3/15/95, version update.
+
+
+  MAX.EXE
+        V3.00 : 5/25/92,1st released version.
+        V3.02 : 10/1/92,Add CYPRESS CY7C343.
+                        Add the display of color screen.
+        V3.03 : 12/29/92,Modify screen display.
+                        Modify batch file function.
+        V3.04 : 4/2/93, Increase the file number of load file function
+                        to 1200.
+        V3.06 : 9/14/93, version update.
+        V3.07 : 12/2/93, modify programming algo.
+        V3.08 : 3/11/94, version update & programming algo.
+        V3.09 : 9/16/94, version update.
+                         modify load file function.
+        V3.10 : 12/29/94, modify screen display and programming algo.
+        V3.11 : 3/15/95, version update.
+        V3.12 : 8/31/95, modify programming algo.
+
+
+  PIC16.EXE
+        V3.10 : 7/1/92, 1st released version.
+        V3.11 : 10/1/92.
+        V3.12 : 10/14/92,modify the programming voltage.
+        V3.13 : 12/2/92,modify screen display of PIC 16C55, 16C57.
+                        Add PIC 16C71.
+                        Modify batch file function.
+        V3.14 : 1/12/93, Modify VCCENID definition.
+        V3.15 : 2/18/93, Modify the programming display.
+        V3.16 : 4/2/93,  Increase the file number of load file function
+                         to 1200.
+                         Modify save file function.
+                         Add security fuse function.
+        V3.17 : 5/10/93, modify screen display and programming algo.
+        V3.19 : 8/13/93, modify programming algo.
+        V3.20 : 9/12/93, add PIC16C84 and modify programming algo.
+        V3.21 :10/13/93, modify programmng algo.
+        V3.24 :11/19/93, add ERASE function.
+                         add PIC16C64, PIC16C84.
+                         modify programming algo on PIC16C5X.
+        V3.25 :1/7/94, add MTA81010, PIC16C64.
+                       modify programming algo. and screen display.
+        V3.26 :2/23/94, modify programming algo.
+        V3.27 :3/11/94, modify auto function.
+        V3.29 :6/28/94, add PIC16C58A,
+                        modify parallel HEX format, load, save function.
+        V3.30 : 9/16/94, modify F1, Home, End keys to operate with load
+                         function.
+        V3.31 : 10/17/94, modify type function.
+        V3.32 : 11/2/94, add MICROCHIP  PIC16C74.
+        V3.33 : 12/23/94, modify screen display.
+        V3.35 : 3/15/95, modify load file function.
+        V3.36 : 4/19/95, add MICROCHIP  PIC16C65, PIC16C620, PIC16C621,
+                                        PIC16C622, PIC16C73.
+        V3.38 : 6/9/95, modify programming algo.
+        V3.39 : 7/5/95, modify programming algo on PIC16C84.
+                        add MICROCHIP  PIC16C63.
+        V3.40 : 7/7/95, modify programming algo on PIC16C5X.
+        V3.41 : 9/20/95, modify programming algo.
+        V3.42 : 12/8/95,  add  PIC16C72.
+                          modify programming algo. on PIC16C84.
+        V3.44 : 2/29/96, modify programming algo. on PIC16C84.
+                         add MICROCHIP  PIC16C52.
+        V3.45 : 7/24/96, modify porgramming algo. on PIC16C7XA, PIC16C72,
+                         add PIC16C54A/CR54, PIC16C57A/CR57/CR57A,
+                             PIC16CR58/C74A/C73A, PIC16C62A/65A/LC65
+        V3.46 : 9/25/96, add PIC14000, PIC16C64A, PIC16C558, PIC16C710,
+                             PIC16C711, PIC16F83, PIC16F84
+                         modify blank function for PIC16C52.
+                         modify auto function.
+                         modify programming algo. on PIC16C72, PIC165X,
+                                                     PIC16C6X/7X/8X.
+        V3.47 : 12/13/96, modify the programming algo. on PIC16C5X.
+                          modify ID code on PIC16C6X/7X/8X.
+                          add PIC16C554, 16C556.
+        V3.48 : 1/28/97, modify the programming algo. and verify function
+        V3.49 :  03/19/97,  modify the programming algo.
+
+
+  PIC17.EXE
+        V3.00 : 4/1/93, first version.
+        V3.01 : 5/10/93, modify screen display and programming algo.
+        V3.04 : 9/12/93, modify buffer range.
+        V3.05 :10/13/93, modify programming algo.
+        V3.08 : 3/11/94, modify programming algo.
+        V3.09 : 9/16/94, modify F1, Home, End keys to operate with load
+                         function.
+        V3.10 : 10/17/94, modify read function.
+        V3.11 : 12/23/94, modify screen display.
+        V3.12 : 3/15/95, modify load file function.
+        V3.13 : 4/19/95, add MICROCHIP  PIC17C44.
+        V3.14 : 7/27/95, add MICROCHIP  PIC17C43, PIC17C44.
+        V3.15 : 9/25/96, add PIC17C42A
+                         modify auto function and programing algo.
+        V3.16 : 1/17/97, modify the programming algo.
+
+
+
+  PLS105.EXE
+        V3.00 : 7/1/92, 1st released version.
+                SIGNETICS PLS104/A,PLS105/A,PLUS105-45/-55,PLC415-16,
+                          PLUS405-37/-45/-55. TI TIB82S105A/B.
+        V3.01 : 10/1/92,Revision of text on the screen.
+        V3.02 : 12/30/92,Modify screen display.
+        V3.03 : 4/2/93, Modify batch file function.
+                        Modify manufacturer YDC as ADRITE.
+                        Modify manufacturer SIGNETICS as PHILIPS.
+                        Increase the file number of load file function
+                        to 1200.
+                        Modify quit screen.
+        V3.04 : 7/23/93, add '/BW' function.
+        V3.05 : 9/15/93, modify save function.
+        V3.06 : 3/11/93, version update.
+        V3.07 : 9/16/94, modify load file function with F1, Home, End keys.
+        V3.08 : 12/27/94, modify screen display and programming algo.
+        V3.09 : 3/16/95, modify programming algo.
+        V3.10 : 7/10/95, modify programming algo on PLUS405.
+
+
+  ST62.EXE
+        V3.00 : 12/1/93, 1st released version.
+        V3.01 : 3/11/94, version update.
+        V3.02 : 9/16/94, modify F1 key to operate with select function.
+        V3.06 : 12/23/94, modify screen display.
+                          modify buffer range on ST62T/E15.
+                          add ST62T/E60.
+        V3.07 : 3/15/95, modify programming algo.
+        V3.11 : 1/4/96, modify programming algo. against SGS-THOMSON ST62E/T15
+
+  Z86E08.EXE
+        V3.00 : 7/1/92, 1st released version.
+        V3.01 : 10/1/92.
+        V3.03 : 12/29/92,Modify screen display.
+                        Modify programming algo.
+        V3.04 : 4/2/93, Increase the file number of load file function
+                        to 1200.
+                        Modify save file function.
+        V3.07 : 7/14/93, add '/BW' function.
+        V3.08 : 9/14/93, version update and modify HEX code.
+        V3.10 : 3/11/94, version update & modify programming algo.
+        V3.11 : 4/19/94, add ZILOG  Z86E04.
+        V3.13 : 9/16/94, modify F1 key to operate with select function.
+                         modify programming algo.
+        V3.14 : 12/23/94, modify screen display.
+        V3.16 : 3/15/95, modify programming algo.
+        V3.18 : 1/4/96, add ZILOG  Z86E03, Z86E06
+                        modify programming algo. on Z86E04/08.
+        V3.19 : 7/3/96, add Z86E02, Z86E04, Z86E08
+
+  COP800.EXE
+        V3.00 : 5/13/94, first released version.
+        V3.02 : 9/16/94, modify F1, Home, End keys to operate with load
+                         function.
+        V3.03 : 12/23/94, modify screen display.
+        V3.06 : 3/15/95, version update.
+                         modify load function.
+        V3.09 : 12/8/95,  add NS  COP8784 CF/CL/EG, COP8788 CF/CL/EG
+        V3.10 : 2/12/96, modify programming algo. on COP8780, COP8781,
+                                                     COP8782.
+        V3.11 : 10/4/96, Revise name : NS to NATIONAL
+                         modify programming algo.
+                         add NATIONAL COP8722C
+
+  EPC.EXE
+        V3.00 : 7/27/94, 1st released version.
+                         supports ALTERA EPC1064, EPC1213.
+        V3.01 : 8/11/94, add ALTERA  EPC1064V.
+        V3.02 : 9/16/94, version update.
+                         modify load file function.
+        V3.03 : 12/29/94, modify screen display and programming algo.
+        V3.04 : 3/15/95, modify programming algo.
+        V3.05 : 12/11/95, modify programming algo.
+        V3.06 : 9/23/96, add EPC1PL8(DIP8), EPC1LC20(PLCC20)
+                             EPC1(EPC1064), EPC1(EPC1213)
+        V3.07 : 11/25/96, modify programming algo.
+
+
+  17P10X.EXE
+        V3.00 : 9/16/94, 1st released version.
+                         supports NEC UPD17P103CX, UPD17P107CX.
+        V3.01 : 12/1/94, modify screen display.
+                         add NEC  uPD17P137ACT/GT.
+        V3.02 : 3/15/95, version update.
+        V3.04 : 9/26/95, add PHILIPS  PCD2755AP/AT.
+        V3.05 : 12/13/96, add PHILIPS  PCD376A, PCD374A.
+                          modify the programming algo.
+
+
+
+  LS52X.EXE
+        V3.00 : 4/17/95, first released version.
+                         supports TI  SN74/54AL5526, SN74/54AL5527,
+                                      SN74/54AL5528.
+        V3.01 : 9/15/95, modify programming algo.
+        V3.02 : 11/1/95, modify save function.
+        V3.03 : 11/14/95, modify save function.
+
+
+  BPPGM1.EXE
+        V3.00 : 9/29/95, first released version.
+                         supports CYPRESS  CY7C258.
+
+
+  COP87LX.EXE
+        V3.01 : 10/1/96, first released version.
+                         add NATIONAL COP87L series devices :
+                             COP87L22, COP87L42, COP87L642, COP87L82
+                             COP87L20, COP87L40, COP87L640, COP87L81
+                             COP87L84, COP87L84-BC
+
+  COP8SA.EXE
+        V3.01 : 11/26/96, first released version
+                          add COP8SAA720(20 pins), COP8SAB720(20 pins),
+                              COP8SAC720(20 pins), COP8SAA728(28 pins),
+                              COP8SAB728(28 pins), COP8SAC728(28 pins).
+------------------------ END -----------------------------
+
+

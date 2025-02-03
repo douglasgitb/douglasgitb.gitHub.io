@@ -1,0 +1,16 @@
+; patch from mpa-1w.3m to mpa-1w.3m
+Offset $0032: From $00 To $A2
+Offset $00C8: From $2A To $50
+Offset $00C9: From $04 To $3F
+Offset $00D2: From $32 To $00
+Offset $00D3: From $4A To $00
+Offset $00D4: From $E0 To $00
+Offset $01A6: From $21 To $CD
+Offset $01A7: From $22 To $80
+Offset $01A8: From $2A To $3F
+Offset $01D2: From $21 To $CD
+Offset $01D3: From $4F To $B0
+Offset $01D4: From $2C To $3F
+Offset $0799: From $21 To $CD
+Offset $079A: From $4F To $90
+Offset $079B: From $2C To $3F

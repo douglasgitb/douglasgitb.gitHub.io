@@ -1,0 +1,51 @@
+                        Software Diskette #3
+                        ---------------------
+
+  ACCESS       : AUTO Programmer Files access program.
+                 From now on, user can select the MFR. & TYPE directly by this
+                 program and this programm will execute proper programmer file
+                 automatically.   Type command as follows :
+                      C> ACCESS
+ -----------------------------------------------------------------------------
+
+  ACCESS.EXE:
+        V1.00 : 7/1/1990.
+        V1.03 : 1/1/91, Add new functions.
+        V1.04 : 2/8/91, Add new IC type.
+        V1.05 : 4/1/91, Add new IC type.
+        V1.06 : 7/1/91, Add new IC type and new functions.
+        V1.07 : 7/3/91, Add new IC type and new functions.
+        V1.08 : 7/12/91,Add new IC type.
+        V1.09 : 9/5/91, Add new IC type and revision of text on the
+                        screen.
+        V1.14 : 11/18/91,Revision of text on the screen.
+        V1.15 : 1/15/92.
+        8.2th : 2/18/92.
+        V3.00 : 4/17/92,Revision of text on the screen.
+        V3.01 : 5/22/92,Add the display of color screen.
+        V8.3  : 7/1/92, Extend the harddisk driver to Z for load file.
+                        Correct the errors in date and readdir.
+        V8.4  : 10/1/92,Add UTILITY File.
+                        Enhance the inspection capability of Display
+                        Card.
+        V8.41 : 10/19/92,modify the drive file execution function.
+        V8.50 : 12/29/92,Modify screen display.
+                        Modify batch file function.
+        V8.60 : 4/2/93, Increase the file number of load file function
+                        to 1200.
+                        Modify manufacturer YDC as ADRITE.
+                        Modify manfuacturer SIGNETICS as PHILIPS.
+        V8.70 : 6/29/93, modify screen display.
+        V8.90 : 11/10/93, modify .EXE file.
+        V9.01 : 3/11/94, version update.
+        V9.02 : 6/24/94, version update.
+        V9.03 : 9/16/94, modify F1, Home, End keys to operate with load
+                         function.
+        V9.04 : 12/23/94, modify selection function.
+        V9.05 : 3/15/95, modify programming algo.
+        V9.07 : 10/3/95, modify device list.
+        V9.08 : 1/4/96, version update
+        V9.09 : 7/3/96, seasonal update.
+        V9.10 : 10/11/96, update prog.dev.
+        V9.11 : 1/15/97, seasonal update
+
