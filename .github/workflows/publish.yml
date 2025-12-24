@@ -1,0 +1,35 @@
+name: publish
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clean space
+        # As per https://carlosbecker.com/posts/github-actions-disk-space/.
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android
+          sudo docker image prune --all --force
+          sudo docker builder prune -a
+      - uses: actions/checkout@v6
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
